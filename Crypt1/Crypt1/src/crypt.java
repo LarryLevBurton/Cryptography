@@ -182,7 +182,7 @@ public class crypt extends javax.swing.JFrame {
             sum = (sum % 10);
         System.out.println(newString.length() +  ":" + sum + ":" + d[15]);
             if(sum == 0){
-                jTextArea1.setText("Your ISBN number is valid");
+                jTextArea1.setText("Your Credit Card number is valid");
             }else{
                 jTextArea1.setText("Sorry that number is not valid");
             }

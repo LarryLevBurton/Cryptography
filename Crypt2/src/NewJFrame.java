@@ -129,6 +129,7 @@ public class NewJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
          int[] d = new int[14];
         int temp = 0;
+        int p = 0, q = 0, r = 0;
         String s; 
         
         s = jTextField1.getText();
@@ -145,16 +146,25 @@ public class NewJFrame extends javax.swing.JFrame {
             d[13] = (((d[0])+(d[1]*8)+(d[2]*5)+(d[3]*9)+(d[4]*4)+(d[5]*7)+(d[6]*2)+(d[7]*6)+(d[8]*3)+(d[9]*10))%11);
 
             for(int i = 10; i < 13; i++){
-               if(d[i] >= 10){
-                  temp = 1;
-                  jTextArea1.setText("Sorry but that is a unusable number");
+            if(d[i] >= 10){
+               temp = 1;
+               jTextArea1.setText("Sorry but that is a unusable number");
+             }
+            if(d[i] != 0 ){
+                temp = 1;
+                jTextArea1.setText("There is an error");
+                    p = ((d[11]^2)- (d[10]* d[12]));             
+                    q = ((d[10] * d[13])- (d[11] * d[12]));         
+                    r =  ((d[12]^2)-(d[11]*d[13]));     
 
-                } 
+             }
             }
             if (temp != 1 ){
-                    jTextArea1.setText("The result is: " + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]+" Sydrome: "+d[10]+d[11]+d[12]+d[13]);
+                    jTextArea1.setText("You have no errors.\n The result is: " 
+                            + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]
+                            + "\n Sydrome: "+d[10]+d[11]+d[12]+d[13]);
 
-            }      
+            }
         }else{
                   jTextArea1.setText("Sorry but that is a unusable number");
 
