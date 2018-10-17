@@ -1,0 +1,33 @@
+s1= (d1+d2+d3+d4+d5+d6+d7+d8+d9+d10) mod 11
+s2= (d1+2*d2+3*d3+4*d4+5*d5+6*d6+7*d7+8*d8+9*d9
+       +10*d10) mod 11
+s3= (d1+22*d2+32*d3+42*d4+52*d5+62*d6+72*d7+82*d8
+      +92*d9+102*d10) mod 11
+    = (d1+4*d2+9*d3+5*d4+3*d5+3*d6+5*d7+9*d8
+      +4*d9+d10) mod 11
+s4= (d1+23*d2+33*d3+43*d4+53*d5+63*d6+73*d7+83*d8
+      +93*d9+103*d10) mod 11
+    = (d1+8*d2+5*d3+9*d4+4*d5+7*d6+2*d7+6*d8
+      +3*d9+10*d10) mod 11 
+
+
+
+if(s1-4 != 0){
+	P = S2^2  - S1 S3             
+	Q = S1 S4 - S2 S3          
+	R = S32  - S2 S4     
+	if(P, Q or R != 0){		error checking for multiple
+		i = (- Q + v(Q2-4*P*R)) / 2*P
+		j = (- Q -  v(Q2-4*P*R)) / 2*P
+		b = (i*s1- s2) / (i - j)
+		a = s1 – b
+	}else{
+			do error checking for 1.
+	}
+}
+
+	
+
+create function for Divide
+create function for Square Root
+create function for power off
