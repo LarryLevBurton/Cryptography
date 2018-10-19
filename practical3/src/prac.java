@@ -109,23 +109,24 @@ public class prac extends javax.swing.JFrame {
             if (zeroes == 4) {
                 jTextArea1.setText("No Errors.\n Result is: " + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]);
                 return;
-            } else {            
+            } else {          
+                int temp3 = 0;
                 int temp1 = lookup[2][((s[1])%11)];
                 int temp2 = (s[0]*s[2])%11;
                 System.out.println(temp2);
-                int temp3 = lookup[1][temp2];
-                temp3 = (temp1) + (temp3);
-                p = temp3 %11;
+//                int temp3 = lookup[1][temp2];
+//                temp3 = (temp1) + (temp3);
+                p = mod11(temp1 - temp2);// %11;
                 
                 temp1 = (s[0]*s[3])%11;
                 temp2 = (s[1]*s[2])%11;
-                temp3 = lookup[1][temp2];
-                q = (temp1 + temp3)%11;
+//                temp3 = lookup[1][temp2];
+                q = mod11(temp1 - temp2);
                 
                 temp1 = lookup[2][((s[2])%11)];
                 temp2 = (s[1]*s[3])%11;
-                temp3 = lookup[1][temp2];
-                r = (temp1 + temp3)%11;
+//                temp3 = lookup[1][temp2];
+                r = mod11(temp1 + temp2);
                 
                 System.out.println("P: " + p + "Q: " + q + "R: " + r);
 
@@ -138,17 +139,18 @@ public class prac extends javax.swing.JFrame {
                     d[i-1] = (d[i-1]-(a));
                     jTextArea1.setText("You had one error in possition "+ i + " With an error magnotude of "+ a +".\n Result is: " + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]);
                 }else{
-                    int negativeQ = (lookup[1][q])%11;//
+//                    int negativeQ = (lookup[1][q])%11;//
                     int squaredQ = (lookup[2][q])%11;
                     int negative4  = (lookup[1][3])%11;
                     temp1 = ((squaredQ + negative4) * (p*r));
-                    int squareRoot = lookup[3][temp1%11];
+                    int squareRoot = sqaureRoot((mod11(squaredQ - 4))*(p*r));
+//                            ookup[3][temp1%11];
                     temp1 = negative4 + squareRoot;
-                    temp2 = lookup[4][(p*2)%11];
-                    i = (temp1 * temp2)%11;
+                    int inverseVar = inverseNumber(p*2);
+                    i = ( -q +squareRoot )*inverseVar;//(temp1 * temp2)%11;
                     
                     
-                    negativeQ = lookup[1][q];//
+//                    negativeQ = lookup[1][q];//
                     squaredQ = lookup[2][q];
                     negative4  = lookup[1][3];
                     temp1 = ((squaredQ + negative4) * (p*r));
@@ -156,8 +158,8 @@ public class prac extends javax.swing.JFrame {
 //                    temp1 = negative4 + squareRoot;
 //                    temp2 = lookup[4][(p*2)%11];
                    
-                    temp1 = lookup[1][squareRoot%11];
-                    temp2 = negative4 + temp1;
+                    temp1 = lookup[1][mod11(squareRoot)];
+                    temp2 = mod11(negative4 - temp1);
                     temp3 = lookup[4][(p*2)%11];
                     j = (temp2 * temp3)%11;
                     
@@ -172,11 +174,7 @@ public class prac extends javax.swing.JFrame {
                     jTextArea1.setText("I: " + i + " a: " + a+ " J: " + j + " b: " + temp1);
                     System.out.println("I: " + i + " a: " + a+ " J: " + j + " b: " + b);
 
-                    
-
-                    
-                    
-               
+                  
 
                 }
                         
@@ -192,7 +190,7 @@ public class prac extends javax.swing.JFrame {
            {0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, //0: x
            {0,10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, //1: -x
            {0,1, 4, 9, 5, 3, 3, 5, 9, 4, 1},  //2: x^2
-           {0,1, 0, 5, 2, 4, 0, 0, 0, 3, 0},  //3: square root of x
+           {0,1, -1, 5, 2, 4, -1, -1, -1, 3, -1},  //3: square root of x
            {0,1, 6, 4, 3, 9, 2, 8, 7, 5, 10}  //4:x^-1(inverse)
         }; 
     
@@ -200,6 +198,30 @@ public class prac extends javax.swing.JFrame {
         return (a + (-b))%12;
     }
     
+    public int inverseNumber(int x){
+        return lookup[4][x];
+    }
+    
+    public int sqaureRoot(int x){
+        
+        x = lookup[3][x];
+        if (x == -1){
+            jTextArea1.setText("Unusable number");  
+            System.exit(0);
+        }
+        return x;
+    }
+    
+    
+    public int mod11(int x){
+        x = x%11;
+        System.out.print(" " + x);
+        if (x < 0){
+            x = Math.abs(x);
+            x = lookup[1][x];
+        }
+        return x;
+    }
     
     public int inverse(int a, int n) { 
 	int t = 0; int newt = 1; 
