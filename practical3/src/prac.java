@@ -84,7 +84,7 @@ public class prac extends javax.swing.JFrame {
         if(text.length() == 10){    
             for(int k = 0; k< 10; k++){
                         d[k]=Integer.parseInt(String.valueOf(text.charAt(k)));
-                        System.out.println(d[k]);
+//                        System.out.println(d[k]);
             }
 
             s[0] = ((d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9])%11);
@@ -110,68 +110,44 @@ public class prac extends javax.swing.JFrame {
                 jTextArea1.setText("No Errors.\n Result is: " + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]);
                 return;
             } else {          
-                int temp3 = 0;
-                int temp1 = lookup[2][((s[1])%11)];
-                int temp2 = (s[0]*s[2])%11;
-                System.out.println(temp2);
-//                int temp3 = lookup[1][temp2];
-//                temp3 = (temp1) + (temp3);
-                p = mod11(temp1 - temp2);// %11;
+    
                 
-                temp1 = (s[0]*s[3])%11;
-                temp2 = (s[1]*s[2])%11;
-//                temp3 = lookup[1][temp2];
-                q = mod11(temp1 - temp2);
                 
-                temp1 = lookup[2][((s[2])%11)];
-                temp2 = (s[1]*s[3])%11;
-//                temp3 = lookup[1][temp2];
-                r = mod11(temp1 + temp2);
+                p = generateP(s[0],s[1],s[2]);
+                q = generateQ(s[0],s[1],s[2],s[3]);
+                r = generateR(s[1],s[2],s[3]);
                 
-                System.out.println("P: " + p + "Q: " + q + "R: " + r);
+                System.out.println("\nP: " + p + " Q: " + q + " R: " + r);
 
                 if(p == 0 && q == 0 && r == 0){
                     jTextArea1.setText("You have got 1 error");
                     a = s[0];//magnotide
-                    temp1 = (s[0]%11);
-                    temp2 = lookup[4][temp1];
+                    int temp1 = (s[0]%11);
+                    int temp2 = lookup[4][temp1];
                     i = (s[1]*temp2)%11;//position
                     d[i-1] = (d[i-1]-(a));
-                    jTextArea1.setText("You had one error in possition "+ i + " With an error magnotude of "+ a +".\n Result is: " + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]);
                 }else{
-//                    int negativeQ = (lookup[1][q])%11;//
-                    int squaredQ = (lookup[2][q])%11;
-                    int negative4  = (lookup[1][3])%11;
-                    temp1 = ((squaredQ + negative4) * (p*r));
-                    int squareRoot = sqaureRoot((mod11(squaredQ - 4))*(p*r));
-//                            ookup[3][temp1%11];
-                    temp1 = negative4 + squareRoot;
-                    int inverseVar = inverseNumber(p*2);
-                    i = ( -q +squareRoot )*inverseVar;//(temp1 * temp2)%11;
-                    
-                    
-//                    negativeQ = lookup[1][q];//
-                    squaredQ = lookup[2][q];
-                    negative4  = lookup[1][3];
-                    temp1 = ((squaredQ + negative4) * (p*r));
-                    squareRoot = lookup[3][temp1%11];
-//                    temp1 = negative4 + squareRoot;
-//                    temp2 = lookup[4][(p*2)%11];
-                   
-                    temp1 = lookup[1][mod11(squareRoot)];
-                    temp2 = mod11(negative4 - temp1);
-                    temp3 = lookup[4][(p*2)%11];
-                    j = (temp2 * temp3)%11;
-                    
-                    
-                    int temp4 = i + lookup[1][(j%11)];
-                    b = (i*s[1]-lookup[1][(s[2]%11)])*(lookup[3][temp4%11]);
-                    a = s[0] + lookup[1][(b%11)];
-                    
-                    d[i-1] = d[i-1]-(a);
-                    d[j-1] = d[j-1]-(b);
+                    i = generateI(p, q, r);
+//                    System.out.println("\nPositive Q: "+ q + "\nnegative Q: " + -q + "\n");
+//                    i = 0;
+                    j = generatej(p,q,r);
+//                    j = 0;
+                    b = generateB(i, s[0],s[1],j);
+                    a = generateA(s[0],b);
 
-                    jTextArea1.setText("I: " + i + " a: " + a+ " J: " + j + " b: " + temp1);
+                    System.out.println("I: " + i + " a: " + a+ " J: " + j + " b: " + b);
+
+                    
+//                    
+//                    
+//                    int temp4 = i + lookup[1][(j%11)];
+//                    b = (i*s[1]-lookup[1][(s[2]%11)])*(lookup[3][temp4%11]);
+//                    a = s[0] + lookup[1][(b%11)];
+//                    
+//                    d[i-1] = d[i-1]-(a);
+//                    d[j-1] = d[j-1]-(b);
+
+                    jTextArea1.setText("I: " + i + " a: " + a+ " J: " + j + " b: " + b);
                     System.out.println("I: " + i + " a: " + a+ " J: " + j + " b: " + b);
 
                   
@@ -186,6 +162,85 @@ public class prac extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
     
+    public int generateP(int s1, int s2, int s3){
+        int temp1 = lookup[2][((s2)%11)];
+        int temp2 = (s1*s3)%11;
+//        System.out.println(temp2);
+        int p = mod11(temp1 - temp2);// %11;
+        return p;
+    }
+    
+    
+    public int generateQ(int s1, int s2, int s3, int s4){
+        int temp1 = (s1*s4)%11;
+        int temp2 = (s2*s3)%11;
+        int q = mod11(temp1 - temp2);
+        return q;
+    }
+//    
+//    
+    public int generateR(int s2, int s3, int s4){
+        int s3Squared = lookup[2][((s3)%11)];
+        int s2AndS4 = (s2*s4)%11;
+//        int temp3 = lookup[1][temp2];
+        int r = mod11(s3Squared - s2AndS4);
+
+        return r;
+    }
+
+    public int generateI(int p, int q, int r){
+//          int negativeQ = (lookup[1][q])%11;//
+            int squaredQ = sqaureNumber(q);//sqauring Q
+//          int negative4  = mod11(lookup[1][4]);
+            int sum = ((squaredQ -4) * (p*r));//subtract 4 from q^2 and time it by p*r
+            int squareRoot = sqaureRoot(sum);
+            
+            if(squareRoot == -1){
+               jTextArea1.setText("There are more then 2 error");
+               return squareRoot;
+            }
+            System.out.print("Sum:" + squareRoot + " -q: " + -q);
+
+            sum = (-q) + squareRoot;
+//            System.out.print(" Sum:" + sum + "\n");
+
+            int inverseVar = inverseNumber(p*2);
+            System.out.print("\ninverseVar: " + inverseVar + "p*2: " + p*2 + "\n");;
+
+            int i = ( sum )*inverseVar;//(temp1 * temp2)%11;
+            return mod11(i);
+    }
+    
+       public int generatej(int p, int q, int r){
+            int squaredQ = sqaureNumber(q);//sqauring Q
+            int sum = ((squaredQ -4) * (p*r));//subtract 4 from q^2 and time it by p*r
+            int squareRoot = sqaureRoot(sum);
+            
+            if(squareRoot == -1){
+               jTextArea1.setText("There are more then 2 error");
+               return squareRoot;
+            }
+            System.out.print("Sum:" + squareRoot + " -q: " + -q);
+
+            sum = (-q) - squareRoot;
+//            System.out.print(" Sum:" + sum + "\n");
+
+            int inverseVar = inverseNumber(p*2);
+            System.out.print("\ninverseVar: " + inverseVar + "p*2: " + p*2 + "\n");;
+
+            int i = ( sum )*inverseVar;//(temp1 * temp2)%11;
+            return mod11(i);
+    }
+    
+    public int generateB(int i, int s1, int s2 ,int j){
+       
+        int b = 0;
+        return b;
+    }
+    public int generateA(int s1,int b){
+        int a = 0;
+        return a;
+    }
     public int[][] lookup = { 
            {0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, //0: x
            {0,10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, //1: -x
@@ -197,18 +252,27 @@ public class prac extends javax.swing.JFrame {
     public int subtract(int a, int b){
         return (a + (-b))%12;
     }
+    public int sqaureNumber(int x){
+        mod11(x);
+        return lookup[2][x];
+    }
     
     public int inverseNumber(int x){
-        return lookup[4][x];
+        return lookup[4][mod11(x)];
     }
     
     public int sqaureRoot(int x){
-        
+        x = mod11(x);
         x = lookup[3][x];
         if (x == -1){
-            jTextArea1.setText("Unusable number");  
-            System.exit(0);
+            System.out.println("Unusable number"); 
+
+            return x;
+
+//            System.exit(0);
         }
+            System.out.println("Square Root:" + x);             
+
         return x;
     }
     
