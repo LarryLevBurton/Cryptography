@@ -185,9 +185,9 @@ public class prac extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
                         .addComponent(jLabel17)
@@ -241,7 +241,7 @@ public class prac extends javax.swing.JFrame {
             for (int k = 0; k < 4; k++) {
                if(s[k] == 10){
 //                  temp = 1;
-                  jTextArea1.setText("Sorry but that is a unusable number");
+                       jTextArea1.setText("There are more then 2 errors.");                       
                   return;
                } else if (s[k] == 0) {
                    zeroes++;
@@ -288,12 +288,12 @@ public class prac extends javax.swing.JFrame {
                     System.out.println("I: " + i + " a: " + a+ " J: " + j + " b: " + b);
 
                     if(i == -1 || j == -1){
-                       System.out.println("There are more then 2 errors.");                       
-                       System.out.println("There are more then 2 errors.");
+                       jTextArea1.setText("There are more then 2 errors and there is no square root.");                       
+//                       System.out.println("There are more then 2 errors.");
 
                     }else{
-                        d[i-1] = mod11(d[i-1]+a);
-                        d[j-1] = mod11(d[j-1]+b);
+                        d[i-1] = mod11(d[i-1]-a);
+                        d[j-1] = mod11(d[j-1]-b);
                         jTextArea1.setText("You had two errors");
 
                         jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
