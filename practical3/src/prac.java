@@ -75,22 +75,22 @@ public class prac extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("I:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("0");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("0");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("0");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("0");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Syn:");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("0000");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -108,13 +108,13 @@ public class prac extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("R:");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("0");
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText("0");
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel18.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,40 +223,33 @@ public class prac extends javax.swing.JFrame {
         temp = zeroes = 0;
         String text = jTextField1.getText().replaceAll("[^\\d.]", "");
 
-        if(text.length() == 10){    
-            for(int k = 0; k< 10; k++){
-                        d[k]=Integer.parseInt(String.valueOf(text.charAt(k)));
-//                        System.out.println(d[k]);
+        if(text.length() == 10){//Check is input is 10 characters    
+            for(int k = 0; k< 10; k++){//Loops through input
+                        d[k]=Integer.parseInt(String.valueOf(text.charAt(k)));//read numbers into array as ints
             }
-
+            //Generate syndromes
             s[0] = ((d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9])%11);
             s[1] = (((d[0]*1)+(d[1]*2)+(d[2]*3)+(d[3]*4)+(d[4]*5)+(d[5]*6)+(d[6]*7)+(d[7]*8)+(d[8]*9)+(d[9]*10))%11);
             s[2] = (((d[0]*1)+(d[1]*4)+(d[2]*9)+(d[3]*5)+(d[4]*3)+(d[5]*3)+(d[6]*5)+(d[7]*9)+(d[8]*4)+(d[9]))%11);
             s[3] = (((d[0])+(d[1]*8)+(d[2]*5)+(d[3]*9)+(d[4]*4)+(d[5]*7)+(d[6]*2)+(d[7]*6)+(d[8]*3)+(d[9]*10))%11);
             
-            jLabel10.setText(s[0]+""+s[1]+""+s[2]+""+s[3]+""); //Syn
+            jLabel10.setText(s[0]+""+s[1]+""+s[2]+""+s[3]+""); //Output Syndroms to lable
 
-//            System.out.println(s[0]+" "+s[1]+" "+s[2]+" "+s[3]);
-
-            for (int k = 0; k < 4; k++) {
-               if(s[k] == 10){
-//                  temp = 1;
-                       jTextArea1.setText("There are more then 2 errors.");                       
+            for (int k = 0; k < 4; k++) {//Loops through syndroms
+               if(s[k] == 10){//Checks if any syn is greater then 11
+                    jTextArea1.setText("There are more then 2 errors.");                       
                   return;
                } else if (s[k] == 0) {
                    zeroes++;
-                   
-               }else{
-                   temp = 1;
                }
+//               else{
+//                   temp = 1;
+//               }
             }
             if (zeroes == 4) {
-                jTextArea1.setText("No Errors.\n Result is: " + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]);
-                return;
-            } else {          
-    
-                
-                
+                jTextArea1.setText("You have got no errors.");
+                jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
+            } else {              
                 p = generateP(s[0],s[1],s[2]);
                 q = generateQ(s[0],s[1],s[2],s[3]);
                 r = generateR(s[1],s[2],s[3]);
@@ -264,7 +257,6 @@ public class prac extends javax.swing.JFrame {
                 jLabel16.setText(p + ""); //P        
                 jLabel17.setText(q + ""); //Q
                 jLabel18.setText(r+ ""); //R
-//                System.out.println("\nP: " + p + " Q: " + q + " R: " + r);
 
                 if(p == 0 && q == 0 && r == 0){
                     jTextArea1.setText("You have got 1 error");
@@ -273,6 +265,11 @@ public class prac extends javax.swing.JFrame {
                     int temp2 = lookup[4][temp1];
                     i = (s[1]*temp2)%11;//position
                     d[i-1] = (d[i-1]-(a));
+                    
+                    jLabel7.setText(i+""); //I
+                    jLabel5.setText(a+"");//A
+                    jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
+
                 }else{
                     i = generateI(p, q, r);
                     jLabel7.setText(i+""); //I
@@ -284,12 +281,8 @@ public class prac extends javax.swing.JFrame {
                     a = generateA(s[0],b);
                     jLabel5.setText(a+"");//A
 
-                    
-                    System.out.println("I: " + i + " a: " + a+ " J: " + j + " b: " + b);
-
                     if(i == -1 || j == -1){
                        jTextArea1.setText("There are more then 2 errors and there is no square root.");                       
-//                       System.out.println("There are more then 2 errors.");
 
                     }else{
                         d[i-1] = mod11(d[i-1]-a);
@@ -326,8 +319,7 @@ public class prac extends javax.swing.JFrame {
     }
     public int generateP(int s1, int s2, int s3){
         int temp1 = lookup[2][((s2)%11)];
-        int temp2 = (s1*s3)%11;
-//        System.out.println(temp2);
+        int temp2 = mod11(s1*s3);
         int p = mod11(temp1 - temp2);// %11;
         return p;
     }
@@ -339,12 +331,10 @@ public class prac extends javax.swing.JFrame {
         int q = mod11(temp1 - temp2);
         return q;
     }
-//    
-//    
+
     public int generateR(int s2, int s3, int s4){
         int s3Squared = lookup[2][((s3)%11)];
-        int s2AndS4 = (s2*s4)%11;
-//        int temp3 = lookup[1][temp2];
+        int s2AndS4 = mod11(s2*s4);
         int r = mod11(s3Squared - s2AndS4);
 
         return r;
@@ -361,33 +351,20 @@ public class prac extends javax.swing.JFrame {
             System.out.print("Sum:" + squareRoot + " -q: " + -q);
             sum = (-q) + squareRoot;
             int inverseVar = inverseNumber(p*2);
-//            System.out.print("\ninverseVar: " + inverseVar + "p*2: " + p*2 + "\n");;
-
             int i = ( sum )*inverseVar;//(temp1 * temp2)%11;
             return mod11(i);
     }
     
        public int generatej(int p, int q, int r){
-//          int negativeQ = (lookup[1][q])%11;//
             int squaredQ = sqaureNumber(q);//sqauring Q
-//          int negative4  = mod11(lookup[1][4]);
-//            int sum = (mod11(squaredQ -4) * mod11(p*r));//subtract 4 from q^2 and time it by p*r
             int sum = (squaredQ-(4*(p*r))); //subtract 4 from q^2 and time it by p*r
-
             int squareRoot = sqaureRoot(sum);
-            
             if(squareRoot == -1){
                jTextArea1.setText("There are more then 2 error");
                return squareRoot;
             }
-            System.out.print("Sum:" + squareRoot + " -q: " + -q);
-
             sum = (-q) - squareRoot;
-//            System.out.print(" Sum:" + sum + "\n");
-
             int inverseVar = inverseNumber(p*2);
-            System.out.print("\ninverseVar: " + inverseVar + "p*2: " + p*2 + "\n");;
-
             int i = ( sum )*inverseVar;//(temp1 * temp2)%11;
             return mod11(i);
     }
@@ -398,7 +375,6 @@ public class prac extends javax.swing.JFrame {
         int tempB = tempA - s2;
         int tempC = mod11(i - j);
         int b = tempB * inverseNumber(tempC);
-//        tempC = lookup[4][(i-j)];
         return mod11(b);
     }
     public int generateA(int s1,int b){
@@ -416,13 +392,10 @@ public class prac extends javax.swing.JFrame {
     public int subtract(int a, int b){
         return (a + (-b))%12;
     }
+    
     public int sqaureNumber(int x){
-        System.out.print("\nx :" + x);
         x = mod11(x);;
-        System.out.print("\nx: " + x);
-         
         x = lookup[2][x];
-        System.out.print("\nx: " + x +"\n");
         return x;
                 
     }
@@ -432,20 +405,13 @@ public class prac extends javax.swing.JFrame {
     }
     
     public int sqaureRoot(int x){
-//        System.out.print("x" + x);
 
         x = mod11(x);
         x = lookup[3][x];
-//                System.out.print("x" + x);
 
         if (x == -1){
-            System.out.println("Unusable number"); 
             return x;
-
-//            System.exit(0);
         }
-            System.out.println("Square Root:" + x);             
-
         return x;
     }
     
