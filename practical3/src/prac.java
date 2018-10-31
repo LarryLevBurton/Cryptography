@@ -51,10 +51,15 @@ public class prac extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Check");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -170,7 +175,7 @@ public class prac extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,8 +290,17 @@ public class prac extends javax.swing.JFrame {
                        jTextArea1.setText("There are more then 2 errors and there is no square root.");                       
 
                     }else{
-                        d[i-1] = mod11(d[i-1]-a);
-                        d[j-1] = mod11(d[j-1]-b);
+                        i = i - 1;
+                        j = j - 1;
+
+                        if (i == -1){
+                            i = 0;
+                        }
+                        if (j == -1){
+                            j = 0;
+                        }
+                        d[i-1] = mod11(d[i]-a);
+                        d[j-1] = mod11(d[j]-b);
                         jTextArea1.setText("You had two errors");
 
                         jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
@@ -302,6 +316,10 @@ public class prac extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void setup(){
         jLabel5.setText("0"); //A       
