@@ -241,7 +241,7 @@ public class prac extends javax.swing.JFrame {
             jLabel10.setText(s[0]+""+s[1]+""+s[2]+""+s[3]+""); //Output Syndroms to lable
 
             for (int k = 0; k < 4; k++) {//Loops through syndroms
-               if(s[k] == 10){//Checks if any syn is greater then 11
+               if(s[k] > 10){//Checks if any syn is greater then 11
                     jTextArea1.setText("There are more then 2 errors.");                       
                   return;
                } else if (s[k] == 0) {
@@ -269,11 +269,17 @@ public class prac extends javax.swing.JFrame {
                     int temp1 = (s[0]%11);
                     int temp2 = lookup[4][temp1];
                     i = (s[1]*temp2)%11;//position
-                    d[i-1] = (d[i-1]-(a));
-                    
-                    jLabel7.setText(i+""); //I
-                    jLabel5.setText(a+"");//A
-                    jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
+                    if(i <= 0 || i>= 10){
+                        jTextArea1.setText("You have got more then 2 errors");
+                    }else{
+                        d[i-1] = (d[i-1]-(a));
+
+                        jLabel7.setText(i+""); //I
+                        jLabel5.setText(a+"");//A
+                        jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
+
+                    }
+               
 
                 }else{
                     i = generateI(p, q, r);
@@ -286,24 +292,27 @@ public class prac extends javax.swing.JFrame {
                     a = generateA(s[0],b);
                     jLabel5.setText(a+"");//A
 
-                    if(i == -1 || j == -1){
+                     
+                    if(i <= 0 || j <= 0){
                        jTextArea1.setText("There are more then 2 errors and there is no square root.");                       
 
                     }else{
-                        i = i - 1;
-                        j = j - 1;
+                       
+                        i -=1;
+                        j -=1;
+                     
+                        d[i] = mod11(d[i]-a);
+                        d[j] = mod11(d[j]-b);
+                        if(d[i] >= 10 || d[j] >= 10){
+                                                    jTextArea1.setText("You had more then two errors");
 
-                        if (i == -1){
-                            i = 0;
-                        }
-                        if (j == -1){
-                            j = 0;
-                        }
-                        d[i-1] = mod11(d[i]-a);
-                        d[j-1] = mod11(d[j]-b);
+                        }else{
+                
                         jTextArea1.setText("You had two errors");
-
                         jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
+
+                        }
+        
 
                     }
 
