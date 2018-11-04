@@ -371,6 +371,8 @@ public class prac extends javax.swing.JFrame {
             int squaredQ = sqaureNumber(q);//sqauring Q
             int sum = (squaredQ-(4*(p*r))); //subtract 4 from q^2 and time it by p*r
             int squareRoot = sqaureRoot(sum);
+            System.out.print("\n Square: " +squareRoot);
+
             if(squareRoot == -1){
                jTextArea1.setText("There are more then 2 error");
                return squareRoot;
