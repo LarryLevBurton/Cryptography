@@ -10,6 +10,7 @@ import java.util.logging.*;
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest; 
 import java.security.NoSuchAlgorithmException; 
+import java.util.Arrays;
 
  
 /**
@@ -55,30 +56,23 @@ public class Sha1New2018 {
 //	System.out.println("SHA1 hash of string: " + Sha1New2018.sha1(rawString));
 //        char text[] = {' ',' ',' ',' ',' ',' '};    
 //
-        String givenHash = "c2543fff3bfa6f144c2f06a7de6cd10c0b650cae";
-	loopText(givenHash);
-        givenHash = "b47f363e2b430c0647f14deea3eced9b0ef300ce";
-	loopText(givenHash);
-        givenHash = "e74295bfc2ed0b52d40073e8ebad555100df1380";
-	loopText(givenHash);
-        givenHash = "0f7d0d088b6ea936fb25b477722d734706fe8b40";
-	loopText(givenHash);
-        givenHash = "77cfc481d3e76b543daf39e7f9bf86be2e664959";
-	loopText(givenHash);
-        givenHash = "5cc48a1da13ad8cef1f5fad70ead8362aabc68a1";
-	loopText(givenHash);
-        givenHash = "4bcc3a95bdd9a11b28883290b03086e82af90212";
-	loopText(givenHash);
-        givenHash = "7302ba343c5ef19004df7489794a0adaee68d285";
-	loopText(givenHash);
-        givenHash = "21e7133508c40bbdf2be8a7bdc35b7de0b618ae4";
-	loopText(givenHash);
-        givenHash = "6ef80072f39071d4118a6e7890e209d4dd07e504";
-	loopText(givenHash);
-        givenHash = "02285af8f969dc5c7b12be72fbce858997afe80a";
-	loopText(givenHash);
-        givenHash = "57864da96344366865dd7cade69467d811a7961b";
-	loopText(givenHash);
+        String[] givenHash = new String[12];
+        givenHash[0] = "c2543fff3bfa6f144c2f06a7de6cd10c0b650cae";
+        givenHash[1] = "b47f363e2b430c0647f14deea3eced9b0ef300ce";
+        givenHash[2] = "e74295bfc2ed0b52d40073e8ebad555100df1380";
+        givenHash[3] = "0f7d0d088b6ea936fb25b477722d734706fe8b40";
+        givenHash[4] = "77cfc481d3e76b543daf39e7f9bf86be2e664959";
+        givenHash[5] = "5cc48a1da13ad8cef1f5fad70ead8362aabc68a1";
+        givenHash[6] = "4bcc3a95bdd9a11b28883290b03086e82af90212";
+        givenHash[7] = "7302ba343c5ef19004df7489794a0adaee68d285";
+        givenHash[8] = "21e7133508c40bbdf2be8a7bdc35b7de0b618ae4";
+        givenHash[9] = "6ef80072f39071d4118a6e7890e209d4dd07e504";
+        givenHash[10] = "02285af8f969dc5c7b12be72fbce858997afe80a";
+        givenHash[11] = "57864da96344366865dd7cade69467d811a7961b";
+
+           loopText(givenHash);
+        
+        
 
 
 //        String givenHash = "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8";
@@ -87,28 +81,29 @@ public class Sha1New2018 {
  
     }
     
-public static void loopText(String givenHash){
+public static void loopText(String[] givenHash){
 //    char text[] = {' ',' ',' '};
     int textPositionA = 0;
     char text[] = {' ',' ',' ',' ',' ',' '};    
-
-//    for(int textPositionA = 0; textPositionA < text.length; textPositionA++){
+//            for(int i = 0; i < givenHash.length; i++){
                int temp = loopChar(givenHash, text,textPositionA);
-
-//    }
-
+//               System.out.println(": Decoding "+ givenHash[+ " " + givenHash.length);       
+//               if(temp != -1){
+//                   givenHash[temp] = " ";
+//               }
+//            }
 }
     
 
-    public static int loopChar(String hash,char text[],int pivot){
+    public static int loopChar(String[] hash,char text[],int pivot){
         char characters[] = {' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','u','r','s','t','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
 //        char characters[] = {'a','b','c'};
-
+        int count = 0;
         String newHash = "";// = Sha1New2018.sha1();
         String textString = "";
             if(pivot >= text.length){
 //                System.out.println("return");
-                return 0;
+                return -1;
             }else{
                 for(int textPositionB = pivot++; textPositionB < text.length; textPositionB++){
 
@@ -116,12 +111,18 @@ public static void loopText(String givenHash){
                         for(int charPositionA = 0; charPositionA < characters.length; charPositionA++){
                             text[textPositionB] = characters[charPositionA];
 //                            System.out.println(text);
-                            if (1 == checkText(hash, text)){
-                                return 1;
+                            int temp = checkText(hash, text);
+                            if (-1 != temp){
+                                hash[temp] = " ";
+                                count++;
+                                return temp ;
                             };
-//                                System.out.println("Call " + pivot+ " " + textPositionB + " "+ charPositionA);
-                            if( 1== loopChar(hash,text, pivot)){
-                                return 1;
+                            int temp2 = loopChar(hash,text, pivot);
+
+                            if(count == hash.length){
+                                System.out.println("Call ");
+
+                                return temp2;
                             };
                         }
                     }
@@ -149,20 +150,23 @@ public static void loopText(String givenHash){
     } 
     
     
-    public static int checkText(String hash, char[] text){
+    public static int checkText(String[] hash, char[] text){
         String textString = new String(text);
         textString = new String(text).replaceAll("\\s+", "");
         String newHash = Sha1New2018.sha1(textString);
 
 //        System.out.println(textString);
+        for(int i = 0; i < hash.length; i++){
+//            System.out.println(i+ ":" + hash.length + " Hash: "+ newHash +" Given hash:"+ hash[i]+ "");       
 
-        if(hash.equals(newHash)){
-            System.out.println("Password: "+ textString + " Hash: "+ newHash +"\n");       
-            System.out.println("Password has been cracked\n"); 
-            return 1;
-        }else{
-            return 0;
+            if(hash[i].equals(newHash) && hash[i] != " "){
+                System.out.println(i+ ": Password: "+ textString + " Hash: "+ newHash +" Given hash:"+ hash[i]+ "");       
+                System.out.println("Password has been cracked\n"); 
+                return i;
+            }
         }
+        return -1;
+
     }
 }
     
