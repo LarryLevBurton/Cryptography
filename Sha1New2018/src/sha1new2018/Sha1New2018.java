@@ -55,66 +55,74 @@ public class Sha1New2018 {
 //	System.out.println("SHA1 hash of string: " + Sha1New2018.sha1(rawString));
 //        char text[] = {' ',' ',' ',' ',' ',' '};    
 //
-//        String givenHash = "c2543fff3bfa6f144c2f06a7de6cd10c0b650cae";
-//        decrypt(givenHash, text,0);
-//        givenHash = "b47f363e2b430c0647f14deea3eced9b0ef300ce";
-//        decrypt(givenHash, text,0);
-//        givenHash = "e74295bfc2ed0b52d40073e8ebad555100df1380";
-//        decrypt(givenHash, text,0);
-//        givenHash = "0f7d0d088b6ea936fb25b477722d734706fe8b40";
-//        decrypt(givenHash, text,0);
-//        givenHash = "77cfc481d3e76b543daf39e7f9bf86be2e664959";
-//        decrypt(givenHash, text,0);
-//        givenHash = "5cc48a1da13ad8cef1f5fad70ead8362aabc68a1";
-//        decrypt(givenHash, text,0);
-//        givenHash = "4bcc3a95bdd9a11b28883290b03086e82af90212";
-//        decrypt(givenHash, text,0);
-//        givenHash = "7302ba343c5ef19004df7489794a0adaee68d285";
-//        decrypt(givenHash, text,0);
-//        givenHash = "21e7133508c40bbdf2be8a7bdc35b7de0b618ae4";
-//        decrypt(givenHash, text,0);
-//        givenHash = "6ef80072f39071d4118a6e7890e209d4dd07e504";
-//        decrypt(givenHash, text,0);
-//        givenHash = "02285af8f969dc5c7b12be72fbce858997afe80a";
-//        decrypt(givenHash, text,0);
-//        givenHash = "57864da96344366865dd7cade69467d811a7961b";
-//        decrypt(givenHash, text,0);
-
-
-        String givenHash = "745f6778338b484cd6f0664e833b61773bbd18d1";
-
+        String givenHash = "c2543fff3bfa6f144c2f06a7de6cd10c0b650cae";
 	loopText(givenHash);
+        givenHash = "b47f363e2b430c0647f14deea3eced9b0ef300ce";
+	loopText(givenHash);
+        givenHash = "e74295bfc2ed0b52d40073e8ebad555100df1380";
+	loopText(givenHash);
+        givenHash = "0f7d0d088b6ea936fb25b477722d734706fe8b40";
+	loopText(givenHash);
+        givenHash = "77cfc481d3e76b543daf39e7f9bf86be2e664959";
+	loopText(givenHash);
+        givenHash = "5cc48a1da13ad8cef1f5fad70ead8362aabc68a1";
+	loopText(givenHash);
+        givenHash = "4bcc3a95bdd9a11b28883290b03086e82af90212";
+	loopText(givenHash);
+        givenHash = "7302ba343c5ef19004df7489794a0adaee68d285";
+	loopText(givenHash);
+        givenHash = "21e7133508c40bbdf2be8a7bdc35b7de0b618ae4";
+	loopText(givenHash);
+        givenHash = "6ef80072f39071d4118a6e7890e209d4dd07e504";
+	loopText(givenHash);
+        givenHash = "02285af8f969dc5c7b12be72fbce858997afe80a";
+	loopText(givenHash);
+        givenHash = "57864da96344366865dd7cade69467d811a7961b";
+	loopText(givenHash);
+
+
+//        String givenHash = "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8";
+
+//	loopText(givenHash);
  
     }
     
 public static void loopText(String givenHash){
-    char text[] = {' ',' ',' '};
+//    char text[] = {' ',' ',' '};
+    int textPositionA = 0;
+    char text[] = {' ',' ',' ',' ',' ',' '};    
 
 //    for(int textPositionA = 0; textPositionA < text.length; textPositionA++){
-               text = loopChar(givenHash, text,0);
+               int temp = loopChar(givenHash, text,textPositionA);
 
 //    }
 
 }
     
 
-    public static char[] loopChar(String hash,char text[],int pivot){
-//        char characters[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','u','r','s','t','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
-        char characters[] = {'a','b','c'};
+    public static int loopChar(String hash,char text[],int pivot){
+        char characters[] = {' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','u','r','s','t','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
+//        char characters[] = {'a','b','c'};
 
         String newHash = "";// = Sha1New2018.sha1();
         String textString = "";
             if(pivot >= text.length){
-                System.out.println("return");
-                return text;
+//                System.out.println("return");
+                return 0;
             }else{
-                for(int textPositionB = 0; textPositionB < characters.length; textPositionB++){
+                for(int textPositionB = pivot++; textPositionB < text.length; textPositionB++){
+
                     if(textPositionB != pivot){
                         for(int charPositionA = 0; charPositionA < characters.length; charPositionA++){
                             text[textPositionB] = characters[charPositionA];
-                            System.out.println(text);
-        //                    System.out.println("Call " + pivot+ " " + text.length + " " + charPositionA);
-                            text = loopChar(hash,text, pivot);
+//                            System.out.println(text);
+                            if (1 == checkText(hash, text)){
+                                return 1;
+                            };
+//                                System.out.println("Call " + pivot+ " " + textPositionB + " "+ charPositionA);
+                            if( 1== loopChar(hash,text, pivot)){
+                                return 1;
+                            };
                         }
                     }
                 }
@@ -137,8 +145,25 @@ public static void loopText(String givenHash){
                 
 //        }
 
-        return text;
-    }        
+        return 0;
+    } 
+    
+    
+    public static int checkText(String hash, char[] text){
+        String textString = new String(text);
+        textString = new String(text).replaceAll("\\s+", "");
+        String newHash = Sha1New2018.sha1(textString);
+
+//        System.out.println(textString);
+
+        if(hash.equals(newHash)){
+            System.out.println("Password: "+ textString + " Hash: "+ newHash +"\n");       
+            System.out.println("Password has been cracked\n"); 
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }
     
     
@@ -158,9 +183,7 @@ public static void loopText(String givenHash){
 
 //////////////////
 
-//    textString = new String(text);
-//                            textString = new String(text).replaceAll("\\s+", "");
-
+                      
 //                        newHash = Sha1New2018.sha1(textString);
 //                        System.out.println("2: "+hash);
 //                        System.out.println("3: "+newHash + "\n");
