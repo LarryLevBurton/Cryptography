@@ -37,25 +37,10 @@ public class Sha1New2018 {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-  /*
-		try { 
-			System.out.println("SHA1 hash of string: " + Sha1New2018.sha1(rawString)); 
-		} catch (NoSuchAlgorithmException e) { 
-			// TODO Auto-generated catch block 
-			e.printStackTrace(); 
-		} catch (UnsupportedEncodingException e) { 
-			// TODO Auto-generated catch block 
-			e.printStackTrace(); 
-		} 
-	*/
+
         BufferedReader userInput = new BufferedReader (new InputStreamReader(System.in)); 
   
-//	System.out.print("Enter string:"); 
-//	String rawString = userInput.readLine(); 
-
-//	System.out.println("SHA1 hash of string: " + Sha1New2018.sha1(rawString));
-//        char text[] = {' ',' ',' ',' ',' ',' '};    
-//
+ 
         String[] givenHash = new String[12];
         givenHash[0] = "c2543fff3bfa6f144c2f06a7de6cd10c0b650cae";
         givenHash[1] = "b47f363e2b430c0647f14deea3eced9b0ef300ce";
@@ -72,132 +57,121 @@ public class Sha1New2018 {
 
             char text[] = {' ',' ',' ',' ',' ',' '}; 
             int textPositionA = 0;
+//            for(int textPositionA = 0; textPositionA < text.length; textPositionA++){
+//            for(int i = 0; i < givenHash.length; i++){
 
-            int temp = loopChar(givenHash, text,textPositionA);
-
-//           loopText(givenHash);
-        
-        
-
-
-//        String givenHash = "86f7e437faa5a7fce15d1ddcb9eaeaea377667b8";
-
-//	loopText(givenHash);
- 
+                int temp = findWord(givenHash,text,textPositionA);
+//            } 
     }
     
-public static void loopText(String[] givenHash){
-    
+        // a variable to remember the start time,  use the following methods 
 
-}
+        public static long timeStart(long timer) {
+                return timer = System.currentTimeMillis();
+        }
+
+        public static String timeStop(String s, long timer) {
+            timer = System.currentTimeMillis() - timer;
+            switch (s) {
+                case "showMs":
+                case "":
+                    return timer + " milliseconds";
+                case "showSec":
+                    return timer/1000 + " seconds";
+                case "showMin":
+                    return timer/60000 +" Minutes " + (timer%60000)/1000 + " seconds";//+ "  milliseconds");
+                default:
+                    break;
+            }
+                return null;
+         }   
+
     
+        public static int findWord(String[] hash,char text[],int pivot){
+                char characters[] = {' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
+                String newHash = "";
+                String textString = "";
+                int count = 0;
+                long timer = 0,time = 0;
+                timer = timeStart(timer);
+
+//                Timer timer = new Timer();
+            for(int pos0 = 0; pos0 < characters.length;pos0++){
+                text[0] = characters[pos0];
+              for(int pos1 = 0; pos1 < characters.length;pos1++){
+                    text[1] = characters[pos1];
+                for(int pos2 = 0; pos2 < characters.length;pos2++){
+                        text[2] = characters[pos2];
+                    for(int pos3 = 0; pos3 < characters.length;pos3++){
+                        text[3] = characters[pos3];
+                        for(int pos4 = 0; pos4 < characters.length;pos4++){
+                            text[4] = characters[pos4];
+                            for(int pos5 = 0; pos5 < characters.length;pos5++){
+                                text[5] = characters[pos5];
+                                textString = new String(text).replaceAll("\\s+", "");
+                                newHash = Sha1New2018.sha1(textString);
+                                if(Arrays.stream(hash).anyMatch(newHash::equals)){
+                                    for(int i = 0; i < hash.length; i++){
+                                        if(hash[i].equals(newHash)){
+//                                            time = System.currentTimeMillis() - timer;
+                                            System.out.println(i + " : " + textString + " : " + timeStop("showMin", timer) +" : "+ newHash); 
+                                            hash[i] = ""; 
+                                            break;
+                                        }
+                                    }
+//                                        System.out.println("Password has been cracked\n"); 
+                                    count++;
+                                    if(count == hash.length){
+                                        return 0;
+                                    }
+                                }
+
+                                }
+                            }
+                        }
+                    }
+                }  
+            }
+            return 0;
+        }
 
     public static int loopChar(String[] hash,char text[],int pivot){
         char characters[] = {' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','u','r','s','t','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
         int count = 0;
-//                String textString = new String(text);
-
-        String newHash = "";// = Sha1New2018.sha1();
+        int temp2 = 0;
+        String newHash = "";
         String textString = "";
-            if(pivot >= text.length){
-                return -1;
-            }else{
-                for(int textPositionB = pivot++; textPositionB < text.length; textPositionB++){
-                    if(textPositionB != pivot){
-                        for(int charPositionA = 0; charPositionA < characters.length; charPositionA++){
-                            text[textPositionB] = characters[charPositionA];
-//                            System.out.println(text);
-//                            int temp = checkText(hash, text);
-                                textString = new String(text).replaceAll("\\s+", "");
-                                newHash = Sha1New2018.sha1(textString);
-
-                            for(int i = 0; i < hash.length; i++){
-                                if(hash[i].equals(newHash) && hash[i] != " "){
-                                    System.out.println(i+ ": Password: "+ textString + " Hash: "+ newHash +" Given hash:"+ hash[i]+ "");       
-                                    System.out.println("Password has been cracked\n"); 
-                                    hash[i] = " ";
-                                    break;
-                                }
-                            }
-//                            if (-1 != temp){
-//                                hash[temp] = " ";
-//                                count++;
-//                                return temp ;
-//                            };
-                            int temp2 = loopChar(hash,text, pivot);
-
-                            if(count == hash.length){
-                                System.out.println("Call ");
-                                return temp2;
-                            };
+        if(pivot >= text.length){
+            return -1;
+        }else{
+            for(int textPositionB = pivot++; textPositionB < text.length; textPositionB++){
+                if(textPositionB != pivot){
+                    for(int charPositionA = 0; charPositionA < characters.length; charPositionA++){
+                        text[textPositionB] = characters[charPositionA];
+                        textString = new String(text).replaceAll("\\s+", "");
+                        newHash = Sha1New2018.sha1(textString);
+//                        System.out.println(textString);
+                        if(Arrays.stream(hash).anyMatch(newHash::equals)){
+                            System.out.println("Password has been cracked\n"); 
+                            count++;
                         }
+//                        if(hash.equals(newHash)){
+//                            return 1;
+//                        }
+                        temp2 = loopChar(hash,text, pivot);
+                        if(count == hash.length){
+                            return count;
+                           
+                        }
+                       
                     }
                 }
             }
+        }
             
-                    
-//                    if(pivot < text.length){
-//                    }else{
-//                        return 0;
-//                    }
-
-//                    
-//                System.out.println(pivot);    
-//                System.out.println(text);                
-//                System.out.println("char: "+ characters.length );
-//                System.out.println(charPositionA);
-//                if(pivot < (text.length)-1){
-//                }
-//            }
-                
-//        }
-
+                 
         return 0;
     } 
     
-    
-    public static int checkText(String[] hash, char[] text){
-        String textString = new String(text);
-        textString = new String(text).replaceAll("\\s+", "");
-        String newHash = Sha1New2018.sha1(textString);
-
-//        System.out.println(textString);
-        for(int i = 0; i < hash.length; i++){
-//            System.out.println(i+ ":" + hash.length + " Hash: "+ newHash +" Given hash:"+ hash[i]+ "");       
-
-            if(hash[i].equals(newHash) && hash[i] != " "){
-                System.out.println(i+ ": Password: "+ textString + " Hash: "+ newHash +" Given hash:"+ hash[i]+ "");       
-                System.out.println("Password has been cracked\n"); 
-                return i;
-            }
-        }
-        return -1;
-
-    }
 }
     
-    
-
-
-//                 if(newHash == hash){
-//                   System.out.println("Password: "+ textString + "Hash: "+ newHash +"\n");       
-//                   System.out.println("Password has been cracked\n"); 
-//
-//                   return;
-//                }else{
-//    //                decrypt(hash, text);
-//                }
-
-
-
-
-//////////////////
-
-                      
-//                        newHash = Sha1New2018.sha1(textString);
-//                        System.out.println("2: "+hash);
-//                        System.out.println("3: "+newHash + "\n");
-//                        if(hash.equals(newHash)){;
-//                            System.out.println("Password: "+ textString + " Hash: "+ newHash +"\n");
-//                            System.out.println("Password has been cracked\n"); 
-//                        }
