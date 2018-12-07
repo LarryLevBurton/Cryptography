@@ -64,6 +64,12 @@ public class Factorization {
 
         return;
     }
-    
+     public static void dixon(int id, long n){
+
+//        System.out.println("ID: "+ id + " The factor of " + n + " is (" + intValue(x) +"^2) - ("+ intValue(y) +"^2)" );
+
+
+        return;
+    }
 }
  
