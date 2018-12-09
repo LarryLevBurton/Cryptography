@@ -116,8 +116,6 @@ public class Factorization {
          //Sets up timer
         long timer = 0;
         timer = timeStart(timer);
-  
-        
         
         Random random = new Random();
         long randomNumber[] = {0,0};        
