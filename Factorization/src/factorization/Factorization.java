@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import static java.lang.Math.abs;
 import static java.lang.Math.ceil;
+import static java.lang.Math.floor;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 import java.util.ArrayList;
@@ -19,26 +20,25 @@ import static oracle.jrockit.jfr.events.Bits.intValue;
 
 /**
  *
- * @author larry
+ * @author Laurence Burton (15003639)
  */
 public class Factorization {
 
-    /**
-     * @param args the command line arguments
-     */
+    /*  
+    Description:    This is the main function for task 4
+                    for generating prime factors for a large
+                    number.
+    Parameters:     args the command line arguments  
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/   
     public static void main(String[] args) throws IOException {
         
 
 
-//        BufferedReader buffer=new BufferedReader(new InputStreamReader(System.in));
-//        System.out.print("Please enter a number to get factorised: ");
-//        String input = buffer.readLine();
-//        int number =  Integer.parseInt(input);
-//        fermat(0, number);
 
-//       System.out.print("Please enter a number to get factorised: " + gcd(54,888));
-        dixon(1, 299);
-//        fermat(1, 224573);
+//  Task 4a      
+//        fermat(1, 224573);        
 //        fermat(2, 299203);    
 //        fermat(3, 1963867);
 //        fermat(4, 6207251);
@@ -57,138 +57,194 @@ public class Factorization {
 //        fermat(16, 576460921650883L);
 //        fermat(17, 1957432135202107L);
 //        fermat(18, 2450609331732137L);
-//        
-    }
 
-    public static void fermat(int id, long n){
-
-        double x = 0, y = 0;          
-        while ((sqrt(n+((++y)*y))%1) != 0){}
+//Task 4b        
+        dixon(1, 299);
+//        dixon(1, 224573);
+//        dixon(2, 299203);    
+//        dixon(3, 1963867);
+//        dixon(4, 6207251);
+//        dixon(5, 14674291);
+//        dixon(6, 23128513);
+//        dixon(7, 254855791);
+//        dixon(8, 428279361);
+//
+//        dixon(9, 159649552547L);
+//        dixon(10, 189061250479L);
+//        dixon(11, 2211744201787L);
+//        dixon(12, 7828669742987L);
+//        dixon(13, 48560209712519L);
+//        dixon(14, 35872004189003L);
+//        dixon(15, 737785058178599L);
+//        dixon(16, 576460921650883L);
+//        dixon(17, 1957432135202107L);
+//        dixon(18, 2450609331732137L);
         
-        x = sqrt(n+(y*y));
-        System.out.println("ID: "+ id + " The factor of " + n + " is (" + intValue(x) +"^2) - ("+ intValue(y) +"^2)" );
-
-
-        return;
     }
+    
+/*  
+        Description:    Generates prime factors of a number using 
+                        Fermats algorithm. 
+        Parameters:     int id: id of number
+                        long n: number to be factorised
+        Returns:        Int: 1 all have been crack 
+                             0 if any are left. 
+        Author(s):      Laurence Burton (15003639)
+*/  
+    public static void fermat(int id, long n){
+        long timer = 0;
+        timer = timeStart(timer);
+        double x = 0, y = 0;          
+        //This while loop implements the Fermat algorith (a2 − N = b2) increment y until the correct number has been generated. 
+        while ((sqrt(n+((++y)*y))%1) != 0){}
+        x = sqrt(n+(y*y));
+        //To find the factors you have to do X= X-Y and Y= = X+Y. I've done this within the print statement below.
+        System.out.println("ID: "+ id + " The factor of " + n + " is " + intValue(x+y) +" * "+ intValue(x-y) +"" + " Time take: "+ timeStop("showMs", timer));
+
+    }
+        
+/*  
+        Description:    Generates prime factors of a number using 
+                        Dixon algorithm. 
+        Parameters:     int id: id of number
+                        long n: number to be factorised
+        Returns:        Int: 1 all have been crack 
+                             0 if any are left. 
+        Author(s):      Laurence Burton (15003639)
+*/   
      public static void dixon(int id, long n){
+         //Sets up timer
+        long timer = 0;
+        timer = timeStart(timer);
+  
+        
+        
         Random random = new Random();
         long randomNumber[] = {0,0};        
         long randomNumberSq[] = {0,0};
+        long powerMulti = 1;
 
-        double squareRoot = sqrt(n);
+        int squareRoot =  (int)sqrt(n);
         long rNum[] = {0,0};
-        int i = 0;
         long results[][] = {{0,0,0,0},{0,0,0,0}};
-//        long rNum 
         
-        int k = 1;
+        int numberPlace = 0;
 
-        while(k == 1){
-            randomNumber[0] = random.nextInt((int)(squareRoot)) + 1;
-            randomNumber[0] = 25;
-            randomNumberSq[0]= randomNumber[0] * randomNumber[0];
-
-            rNum[0] = (randomNumberSq[0])%n;
-            System.out.println("X: " + rNum[0]);
+        //Loop through untill a smooth number has been randomily generated.
+        //Higher then square root of the number and less the numer. 
+        while(numberPlace < 2){
+            randomNumber[numberPlace] = random.nextInt((int)n+1 ) + (int)(squareRoot);
+            randomNumberSq[numberPlace]= randomNumber[numberPlace] * randomNumber[numberPlace];
+            rNum[numberPlace] = (randomNumberSq[numberPlace])%n;
             
-//            if(1 == 1){ //check if it's smooth
-////                break;
-//            }else{
-                results[0] = isItSmooth(rNum[0],3);
-                System.out.println(results[0][0]+" "+results[0][1]+" " + results[0][2]+ " " +results[0][3]);
-
-                break;
-//            }
-
-        }
-        
-        while(true){
-            randomNumber[1] = random.nextInt((int)(squareRoot)) + 1;
-            randomNumber[1] = 29;
-            randomNumberSq[1]= randomNumber[1] * randomNumber[1];
-
-            rNum[1] = (long)(randomNumberSq[1])%n;
-                        System.out.println("X: " + rNum[1]);
-
-//            if(1 == 1){ //check if it's smooth
-////                break;
-//            }else{
-                results[1] = isItSmooth(rNum[1],3);
-                System.out.println(results[1][0]+" "+results[1][1]+" " + results[1][2]+ " " +results[1][3]);
-                break;
-//            }
-
+            //Checks if the number is smooth
+            if(isItSmooth(rNum[numberPlace],3) == 1){ 
+                //generates the power list (smooth 7)
+                results[numberPlace] = generateSmooth(rNum[numberPlace],3);
+                //Moves on to the second random number
+                numberPlace++;
+            }
         }
 
-        long temp = (randomNumber[0] * randomNumber[1]);
-        long temp2 = results[0][0]+results[1][0];        
-        long temp3 = results[0][1]+results[1][1];
-        long temp4 = results[0][2]+results[1][2];
-        long temp5 = results[0][3]+results[1][3];
-        long temp6 = 1;
-        if(temp2 != 0){temp6 *= pow(2,temp2);}    
-        if(temp3 != 0){temp6 *= pow(3,temp3);}      
-        if(temp4 != 0){temp6 *= pow(5,temp4);}     
-        if(temp5 != 0){temp6 *= pow(7,temp5);}    
-
-
-        System.out.println(temp2 + " : "  + temp3 + " : "  + temp4 + " : "  + temp5);      
-        System.out.println(results[0][0]+" "+results[0][1]+" " + results[0][2]+ " " +results[0][3]);
-        System.out.println(results[1][0]+" "+results[1][1]+" " + results[1][2]+ " " +results[1][3]);
-
-
-//        long temp6 = (long) (pow(2,temp2)*pow(3,temp3)*pow(5,temp4)*pow(7,temp5));      
-//        long temp7 = (long) (pow(3,temp3));
-
-        System.out.println(randomNumber[0] + " * " + randomNumber[1] + " = " + temp);
-        System.out.println("Power: " + sqrt(temp6));
-        System.out.println("N: " + n);
-//+results[0][2]+results[0][3];
+        //Multiples the two smooth numbers
+        long randomNumMulti = (randomNumber[0] * randomNumber[1]);
         
+        
+        //Loops through the power lists.
+        //Adds the pairs together and times them to the previous power. 
+        for(int j = 0; j < 4; j++){
+            long temp = results[0][j]+results[1][j];
+            if(temp != 0) {powerMulti *= temp; }
+        }
 
-//        long temp3 = results[1][0]+results[1][1]+results[1][2]+results[1][3];
-        long x = gcd(temp+(long)sqrt(temp6),n);
-        long y = gcd(abs(temp-(long)sqrt(temp6)),n);
-//        
-        System.out.println("ID: "+ id + " The factor of " + n + " is (" + y +"^2) - ("+ x +"^2)" );
+        //squre root of the powers 
+        long sqrtMulti = (long)sqrt(powerMulti);
+        //Gets the GCD of x+y and N
+        long x = gcd(randomNumMulti+sqrtMulti,n);
+        //Gets the GCD of x-y and N
+        long y = gcd(abs(randomNumMulti-sqrtMulti),n);
+
+       //checks if the result is correct
+       if((x*y) != n){
+           //If it isn't it will run again
+           dixon(id,n);
+           return;
+       } else{
+         //If it was correct it will print the result
+        System.out.println("ID: "+ id + " The factor of " + n + " is " + y +" * "+ x + " Time take: "+ timeStop("showMin", timer));
 
         return;
+       }
     }
 
-     
-     public static int isItPrime(int number){
-         for (int i = 2; i <= (number/2); i++){
-             if (number%i == 0){
-                 return 0;
-             }
-         }
-     return 1;
-     }
-      public static long[] isItSmooth(long number, int p){
+    /*  
+        Description:    Checks if the given number is smooth
+        Parameters:     long number: Number to be checked
+                        int p: What smooth you want(e.g. 7)
+        Returns:        Int: 1 Number is smooth 
+                             0 Number isn't smooth 
+        Author(s):      Laurence Burton (15003639)
+*/   
+    public static long isItSmooth(long number, int p){
+        //Checks if the number is 0;
+        if(number == 0){return 0;}
+        long x = 0;
+        int i = 0;        
+        long powerList[] = {2,3,5,7};   
+        
+        while(number > 1){
+            x  = number%powerList[i];
+            if(x != 0){
+                if(i == p){
+                    return 0;
+                }
+                i++;
+            }else if(x == 0){
+                number = (number/powerList[i]);
+            }
+        }
+        return 1;
+      }
 
+
+/*  
+    Description:    Checks if the generate the power 
+                    list for a smooth number
+    Parameters:     long number: Number to be checked
+                    int p: What smooth you want(e.g. 7)
+    Returns:        long[]: the power list is returned    
+    Author(s):      Laurence Burton (15003639)
+*/    
+    public static long[] generateSmooth(long number, int p){
         long x = 0;
         int i = 0;
-        long q[] = {2,3,5,7};        
-        long results[] = {0,0,0,0};//2,3,5,7
+        long powerList[] =  {2,3,5,7};        
+        long results[] =    {0,0,0,0};//2,3,5,7
      
-        while(true){
-            x  = number%q[i];
+        while(number != 0){
+            //Mods number by power X
+            x  = number%powerList[i];
+            //If the remainder isn't 0 then that number can't be dived by that power.
+            //I is increment so that the next power is used. 
             if(x != 0){
+                //Checks if there is any more power left to use
                 if(i == p){
                     return results;
                 }
                 i++;
             }else{
-                number = (number/q[i]);
+                //If the number could be dived the number is update with the result
+                number = (number/powerList[i]);
+                //And the result list is updated. 
                  results[i]++;
             }
         }
+        return null;
       }
+    
+    
     public static long gcd(long a, long b){
-        System.out.println("A:" + a + " B: " + b);
-//        a = 54;
-//        b = 888;
+
         long x = b%a;
         
         while (x != 0){
@@ -196,11 +252,44 @@ public class Factorization {
             b = a; 
             a = x;
             x = b%a;
-                System.out.println("A:" + a + " B: " + b + " X: "+ x);
  
         }
         return a;
      }
 
+/*  
+        Description:    Sets up a starting point for the timer
+        Parameters:     long : timer
+        Returns:        long: start point of timer. 
+        Author(s):      Rong Yang
+*/   
+        public static long timeStart(long timer) {
+                return timer = System.currentTimeMillis();
+        }
+
+/*  
+    Description:    Generates length of time depending 
+                    on what you input. 
+    Parameters:     String s: used to select format
+                    long: time from when the timer started 
+    Returns:        String of to print results. 
+    Author(s):      Rong Yang
+*/   
+    public static String timeStop(String s, long timer) {
+        timer = System.currentTimeMillis() - timer;
+        switch (s) {
+            case "showMs":
+            case "":
+                return timer + " milliseconds";
+            case "showSec":
+                return timer/1000 + " seconds";
+            case "showMin":
+                return timer/60000 +" Minutes " + (timer%60000)/1000 + " seconds";//+ "  milliseconds");
+            default:
+                break;
+        }
+            return null;
+     } 
 }
  
+

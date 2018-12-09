@@ -6,7 +6,7 @@
 
 /**
  *
- * @author larry
+ * @author Laurence Burton 
  */
 public class prac extends javax.swing.JFrame {
 
@@ -26,47 +26,47 @@ public class prac extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        inputObject = new javax.swing.JTextField();
+        checkButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        commentsObject = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        aObject = new javax.swing.JLabel();
+        bObject = new javax.swing.JLabel();
+        iObject = new javax.swing.JLabel();
+        jObject = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        syndromeObject = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        outputObject = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        pObject = new javax.swing.JLabel();
+        qObject = new javax.swing.JLabel();
+        rObject = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Check");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        checkButton.setText("Check");
+        checkButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                checkButtonMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        checkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                checkButtonActionPerformed(evt);
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Comments");
-        jScrollPane1.setViewportView(jTextArea1);
+        commentsObject.setColumns(20);
+        commentsObject.setRows(5);
+        commentsObject.setText("Comments");
+        jScrollPane1.setViewportView(commentsObject);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("A:");
@@ -80,29 +80,29 @@ public class prac extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("I:");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setText("0");
+        aObject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        aObject.setText("0");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setText("0");
+        bObject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        bObject.setText("0");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setText("0");
+        iObject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        iObject.setText("0");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("0");
+        jObject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jObject.setText("0");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Syn:");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setText("0000");
+        syndromeObject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        syndromeObject.setText("0000");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel11.setText("Output:");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel12.setText("0000000000");
+        outputObject.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        outputObject.setText("0000000000");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel13.setText("P:");
@@ -113,14 +113,14 @@ public class prac extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel15.setText("R:");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel16.setText("0");
+        pObject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        pObject.setText("0");
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel17.setText("0");
+        qObject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        qObject.setText("0");
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel18.setText("0");
+        rObject.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        rObject.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,44 +134,44 @@ public class prac extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel7)
+                                .addComponent(iObject)
                                 .addGap(5, 5, 5)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
+                                .addComponent(aObject)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
+                                .addComponent(jObject)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6))
+                                .addComponent(bObject))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel16)
+                                .addComponent(pObject)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel17)
+                                .addComponent(qObject)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel18))
+                                .addComponent(rObject))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10))
+                                .addComponent(syndromeObject))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel12))))
+                                .addComponent(outputObject))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(87, 87, 87)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inputObject, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(checkButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -182,36 +182,36 @@ public class prac extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(inputObject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(syndromeObject))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pObject, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel13))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
-                        .addComponent(jLabel17)
+                        .addComponent(qObject)
                         .addComponent(jLabel15)
-                        .addComponent(jLabel18)))
+                        .addComponent(rObject)))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel5)
+                    .addComponent(aObject)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel6)
+                    .addComponent(bObject)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel7)
+                    .addComponent(iObject)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel8))
+                    .addComponent(jObject))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel12))
+                    .addComponent(outputObject))
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -219,18 +219,30 @@ public class prac extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+/*  
+    Description:    This function is called when the user selects
+                    the check button. It will then check if the number
+                    They've inputted in valid if it isn't I'll 
+                    correct up to 2 errors. 
+    Parameters:     args the command line arguments  
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/  
+    private void checkButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_checkButtonMouseClicked
         int[] d = new int[10];
         int[] s = new int[4];
+        
         setup();
         int temp, zeroes,p,q,r,i,j,b,a;
         temp = zeroes = 0;
-        String text = jTextField1.getText().replaceAll("[^\\d.]", "");
-
-        if(text.length() == 10){//Check is input is 10 characters    
-            for(int k = 0; k< 10; k++){//Loops through input
-                        d[k]=Integer.parseInt(String.valueOf(text.charAt(k)));//read numbers into array as ints
+        String text = inputObject.getText().replaceAll("[^\\d.]", "");
+        
+        //Check is input is 10 characters 
+        if(text.length() == 10){   
+            //Loops through input
+            for(int k = 0; k< 10; k++){
+                        //read numbers into array as ints
+                        d[k]=Integer.parseInt(String.valueOf(text.charAt(k)));
             }
             //Generate syndromes
             s[0] = ((d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9])%11);
@@ -238,158 +250,197 @@ public class prac extends javax.swing.JFrame {
             s[2] = (((d[0]*1)+(d[1]*4)+(d[2]*9)+(d[3]*5)+(d[4]*3)+(d[5]*3)+(d[6]*5)+(d[7]*9)+(d[8]*4)+(d[9]))%11);
             s[3] = (((d[0])+(d[1]*8)+(d[2]*5)+(d[3]*9)+(d[4]*4)+(d[5]*7)+(d[6]*2)+(d[7]*6)+(d[8]*3)+(d[9]*10))%11);
             
-            jLabel10.setText(s[0]+""+s[1]+""+s[2]+""+s[3]+""); //Output Syndroms to lable
+            //Output Syndroms to lable
+            syndromeObject.setText(s[0]+""+s[1]+""+s[2]+""+s[3]+""); 
 
-            for (int k = 0; k < 4; k++) {//Loops through syndroms
-               if(s[k] > 10){//Checks if any syn is greater then 11
-                    jTextArea1.setText("There are more then 2 errors.");                       
+            //Loops through syndromes
+            for (int k = 0; k < 4; k++) {
+                //Checks if any syndromes is greater then 11.
+               if(s[k] > 10){
+                    commentsObject.setText("There are more then 2 errors.");                       
                   return;
                } else if (s[k] == 0) {
                    zeroes++;
                }
-//               else{
-//                   temp = 1;
-//               }
             }
+            //Checks if all 4 sysdromes equal 0: This means there are no errors. 
             if (zeroes == 4) {
-                jTextArea1.setText("You have got no errors.");
-                jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
-            } else {              
+                commentsObject.setText("You have got no errors.");
+                outputObject.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+"");
+            } else {      
+                //Generates P, Q and R
                 p = generateP(s[0],s[1],s[2]);
                 q = generateQ(s[0],s[1],s[2],s[3]);
                 r = generateR(s[1],s[2],s[3]);
                 
-                jLabel16.setText(p + ""); //P        
-                jLabel17.setText(q + ""); //Q
-                jLabel18.setText(r+ ""); //R
+                
+                pObject.setText(p + ""); //P        
+                qObject.setText(q + ""); //Q
+                rObject.setText(r+ ""); //R
 
+                 //Checks if P, Q and R is equal to 0. If they are then there is only 1 error. 
                 if(p == 0 && q == 0 && r == 0){
-                    jTextArea1.setText("You have got 1 error");
-                    a = s[0];//magnotide
+                    commentsObject.setText("You have got 1 error");
+                    //Gets the error magnotide
+                    a = s[0];
+                    
                     int temp1 = (s[0]%11);
                     int temp2 = lookup[4][temp1];
-                    i = (s[1]*temp2)%11;//position
+                    
+                    //Gets to the position of the error
+                    i = (s[1]*temp2)%11;
+                    
+                    
                     if(i <= 0 || i>= 10){
-                        jTextArea1.setText("You have got more then 2 errors");
+                        commentsObject.setText("You have got more then 2 errors");
                     }else{
+                        //fixes error
                         d[i-1] = (d[i-1]-(a));
 
-                        jLabel7.setText(i+""); //I
-                        jLabel5.setText(a+"");//A
-                        jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
+                        iObject.setText(i+""); //I
+                        aObject.setText(a+"");//A
+                        outputObject.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
 
                     }
                
-
+                 //If P, Q and R don't ALL equal 0 then you have more then 1 error
                 }else{
+                    
                     i = generateI(p, q, r);
-                    jLabel7.setText(i+""); //I
+                    iObject.setText(i+""); 
                     j = generatej(p,q,r);
-                    jLabel8.setText(j+""); //J
+                    jObject.setText(j+"");
 
                     b = generateB(i, s[0],s[1],j);
-                    jLabel6.setText(b+""); //B
+                    bObject.setText(b+""); 
                     a = generateA(s[0],b);
-                    jLabel5.setText(a+"");//A
+                    aObject.setText(a+"");
 
-                     
+                     //If I or J are less then 0 there is more then 2 errors. 
                     if(i <= 0 || j <= 0){
-                       jTextArea1.setText("There are more then 2 errors and there is no square root.");                       
-
-                    }else{
-                       
+                       commentsObject.setText("There are more then 2 errors and there is no square root.");                       
+                    }else{                       
                         i -=1;
                         j -=1;
-                     
                         d[i] = mod11(d[i]-a);
                         d[j] = mod11(d[j]-b);
                         if(d[i] >= 10 || d[j] >= 10){
-                                                    jTextArea1.setText("You had more then two errors");
-
+                            commentsObject.setText("You had more then two errors");
                         }else{
-                
-                        jTextArea1.setText("You had two errors");
-                        jLabel12.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); //Output
-
+                            commentsObject.setText("You had two errors");
+                            outputObject.setText(d[0]+""+d[1]+""+d[2]+""+d[3]+""+d[4]+""+d[5]+""+d[6]+""+d[7]+""+d[8]+""+d[9]+""); 
                         }
-        
-
                     }
-
-                }
-                        
-                
+                } 
             }
         } else {
-            jTextArea1.setText("Please enter a 6 digit number");
-
+            commentsObject.setText("Please enter a 6 digit number");
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_checkButtonMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
     
+    private void checkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkButtonActionPerformed
+    
+/*  
+    Description:    Setups up UI
+    Parameters:     void 
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/      
     public void setup(){
-        jLabel5.setText("0"); //A       
-        jLabel6.setText("0"); //B
-        jLabel7.setText("0"); //I
-        jLabel8.setText("0"); //J
-        jLabel10.setText("0"); //Syn
-        jLabel12.setText("0"); //Output       
-        jLabel16.setText("0"); //Output        
-        jLabel17.setText("0"); //Output
-        jLabel18.setText("0"); //Output
-
-
-
+        aObject.setText("0"); //A       
+        bObject.setText("0"); //B
+        iObject.setText("0"); //I
+        jObject.setText("0"); //J
+        syndromeObject.setText("0"); //Syn
+        outputObject.setText("0"); //Output       
+        pObject.setText("0"); //Output        
+        qObject.setText("0"); //Output
+        rObject.setText("0"); //Output
     }
+/*  
+    Description:    Generate P using
+                    P= S2^2  - S1 S3
+    Parameters:     int S1,int S2 and int S3
+    Returns:        int P
+    Author(s):      Laurence Burton (15003639)  
+*/      
     public int generateP(int s1, int s2, int s3){
-        int temp1 = lookup[2][((s2)%11)];
-        int temp2 = mod11(s1*s3);
-        int p = mod11(temp1 - temp2);// %11;
+        int s2Squared = lookup[2][((s2)%11)];
+        int s1TakeS3 = mod11(s1*s3);
+        int p = mod11(s2Squared - s1TakeS3);
         return p;
     }
-    
-    
+/*  
+    Description:    Generate Q using
+                    Q = S1 S4 - S2 S3          
+    Parameters:     int S1,int S2, int S3 and int S4
+    Returns:        int Q
+    Author(s):      Laurence Burton (15003639)  
+*/
     public int generateQ(int s1, int s2, int s3, int s4){
-        int temp1 = (s1*s4)%11;
-        int temp2 = (s2*s3)%11;
-        int q = mod11(temp1 - temp2);
+        int s1TimesS4 = mod11(s1*s4);
+        int s2TimesS3 = mod11(s2*s3);
+        int q = mod11(s1TimesS4 - s2TimesS3);
         return q;
     }
-
+/*  
+    Description:    Generate R using
+                    R = S3^2  - S2 S4               
+    Parameters:     int S2, int S3 and int S4
+    Returns:        int R
+    Author(s):      Laurence Burton (15003639)  
+*/
     public int generateR(int s2, int s3, int s4){
         int s3Squared = lookup[2][((s3)%11)];
-        int s2AndS4 = mod11(s2*s4);
-        int r = mod11(s3Squared - s2AndS4);
+        int s2TimesS4 = mod11(s2*s4);
+        int r = mod11(s3Squared - s2TimesS4);
 
         return r;
     }
-
+    
+/*  
+    Description:    Generate I using
+                    i = (- Q + √(Q2-4*P*R)) / 2*P               
+    Parameters:     int p, int q and int r
+    Returns:        int I
+    Author(s):      Laurence Burton (15003639)  
+*/
     public int generateI(int p, int q, int r){
-            int squaredQ = sqaureNumber(q);//sqauring Q
-            int sum = (squaredQ-(4*(p*r))); //subtract 4 from q^2 and time it by p*r
+            //Sqaure Q
+            int squaredQ = sqaureNumber(q);
+            //subtract 4 from q^2 and time it by p*r
+            int sum = (squaredQ-(4*(p*r)));
             int squareRoot = sqaureRoot(sum);
-            System.out.print("\n Square: " +squareRoot);
 
             if(squareRoot == -1){
-               jTextArea1.setText("There are more then 2 error");
+               commentsObject.setText("There are more then 2 error");
                return squareRoot;
             }
-            System.out.print("Sum:" + squareRoot + " -q: " + -q);
+            
             sum = (-q) + squareRoot;
             int inverseVar = inverseNumber(p*2);
             int i = ( sum )*inverseVar;//(temp1 * temp2)%11;
             return mod11(i);
     }
     
+/*  
+    Description:    Generate J using
+                    j = (- Q -  √(Q2-4*P*R)) / 2*P
+    Parameters:     int p, int q and int r
+    Returns:        int j
+    Author(s):      Laurence Burton (15003639)  
+*/
        public int generatej(int p, int q, int r){
-            int squaredQ = sqaureNumber(q);//sqauring Q
-            int sum = (squaredQ-(4*(p*r))); //subtract 4 from q^2 and time it by p*r
+           //Sqaure Q
+            int squaredQ = sqaureNumber(q);
+            //subtract 4 from q^2 and time it by p*r
+            int sum = (squaredQ-(4*(p*r))); 
             int squareRoot = sqaureRoot(sum);
             if(squareRoot == -1){
-               jTextArea1.setText("There are more then 2 error");
+               commentsObject.setText("There are more then 2 error");
                return squareRoot;
             }
             sum = (-q) - squareRoot;
@@ -397,7 +448,20 @@ public class prac extends javax.swing.JFrame {
             int i = ( sum )*inverseVar;//(temp1 * temp2)%11;
             return mod11(i);
     }
-    
+  
+       
+     /* 
+    Description:    Generate A using
+                    a = s1 – b
+    Parameters:     int i, int s1, int s2 and int j
+    Returns:        int A
+    Author(s):      Laurence Burton (15003639)  
+*/       
+    public int generateA(int s1,int b){
+        int a = s1 - b;
+        return mod11(a);
+    }      
+
     public int generateB(int i, int s1, int s2 ,int j){
         
         int tempA = (i*s1);
@@ -406,10 +470,7 @@ public class prac extends javax.swing.JFrame {
         int b = tempB * inverseNumber(tempC);
         return mod11(b);
     }
-    public int generateA(int s1,int b){
-        int a = s1 - b;
-        return mod11(a);
-    }
+
     public int[][] lookup = { 
            {0,1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, //0: x
            {0,10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, //1: -x
@@ -417,22 +478,49 @@ public class prac extends javax.swing.JFrame {
            {0,1, -1, 5, 2, 4, -1, -1, -1, 3, -1},  //3: square root of x
            {0,1, 6, 4, 3, 9, 2, 8, 7, 5, 10}  //4:x^-1(inverse)
         }; 
+
     
+/* 
+    Description:    subtracts two number 
+                    and mods the results by 12.
+    Parameters:     int a and int b
+    Returns:        int result
+    Author(s):      Laurence Burton (15003639)  
+*/       
     public int subtract(int a, int b){
         return (a + (-b))%12;
     }
-    
+/* 
+    Description:    generates a squared number
+                    under mod 11
+    Parameters:     int x
+    Returns:        int result
+    Author(s):      Laurence Burton (15003639)  
+*/    
     public int sqaureNumber(int x){
         x = mod11(x);;
         x = lookup[2][x];
         return x;
                 
     }
-    
+ /* 
+    Description:    generates a inverse of a number
+                    under mod 11
+    Parameters:     int x
+    Returns:        int result
+    Author(s):      Laurence Burton (15003639)  
+*/      
     public int inverseNumber(int x){
         return lookup[4][mod11(x)];
     }
     
+     /* 
+    Description:    generates the square number
+                    under mod 11
+    Parameters:     int x
+    Returns:        int result
+    Author(s):      Laurence Burton (15003639)  
+*/      
     public int sqaureRoot(int x){
 
         x = mod11(x);
@@ -444,7 +532,12 @@ public class prac extends javax.swing.JFrame {
         return x;
     }
     
-    
+/* 
+    Description:    Mods a number by 11 
+    Parameters:     int x
+    Returns:        int result
+    Author(s):      Laurence Burton (15003639)  
+*/      
     public int mod11(int x){
         x = x%11;
         if (x < 0){
@@ -456,30 +549,27 @@ public class prac extends javax.swing.JFrame {
         return x;
     }
     
-    public int inverse(int a, int n) { 
-	int t = 0; int newt = 1; 
-	int r = n; int newr = a;    int q, temp;  
-	while(newr != 0) { 
-		q = r / newr;  /* integer division */        
-		temp = newt;   /* remember newt    */
-		newt = t - q*newt;
-		t = temp;
-		temp = newr;   /* remember newr    */
-		newr = r - q*newr;
-		r = temp;
-	} 
- 	if(r > 1) return -1; /* not invertible */
-	if(t < 0) t = t + n; /* change to positive */
-	return t;
-}
+
     
-    
+    /* 
+    Description:    Divides number a by B using 
+                    mod 11.
+    Parameters:     int a and int b
+    Returns:        int result
+    Author(s):      Laurence Burton (15003639)  
+*/   
     public int divide(int a, int b){
         return a *(-b);
     }
-    /**
-     * @param args the command line arguments
-     */
+   /*  
+    Description:    This is the main function for task 2.
+                    It's used to declare variables for 
+                    the user interface. 
+    Parameters:     args the command line arguments  
+
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -513,27 +603,27 @@ public class prac extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel aObject;
+    private javax.swing.JLabel bObject;
+    private javax.swing.JButton checkButton;
+    private javax.swing.JTextArea commentsObject;
+    private javax.swing.JLabel iObject;
+    private javax.swing.JTextField inputObject;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jObject;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel outputObject;
+    private javax.swing.JLabel pObject;
+    private javax.swing.JLabel qObject;
+    private javax.swing.JLabel rObject;
+    private javax.swing.JLabel syndromeObject;
     // End of variables declaration//GEN-END:variables
 }

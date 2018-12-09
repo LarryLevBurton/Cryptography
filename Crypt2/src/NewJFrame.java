@@ -6,7 +6,7 @@
 
 /**
  *
- * @author ll2-burton
+ * @author Laurence Burton
  */
 public class NewJFrame extends javax.swing.JFrame {
 
@@ -26,18 +26,20 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        task1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        task2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Task 1");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        task1.setText("Task 1");
+        task1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                task1MouseClicked(evt);
             }
         });
 
@@ -45,134 +47,172 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jButton2.setText("Task 2");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        task2.setText("Task 2");
+        task2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                task2MouseClicked(evt);
             }
         });
+
+        jLabel1.setText("Input:");
+
+        jLabel2.setText("Output:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(54, 54, 54)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                     .addComponent(jTextField1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(task1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(task2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(task1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(task2)
                 .addGap(63, 63, 63))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
+      /*  
+    Description:    This allows a user to input a 6 digit number 
+                    and test if its a valid.
+    Parameters:     args the command line arguments  
+
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/  
+    private void task1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_task1MouseClicked
         
         
         int[] d = new int[10];
-        int temp = 0;
+        int valid = 1;
         String s; 
         
         s = jTextField1.getText();
         s = s.replaceAll("[^\\d.]", "");
+        //Checks user input is 6 characters
         if(s.length() == 6){    
+            //Converts them to ints
             for(int i = 0; i< 6; i++){
                         d[i]=Integer.parseInt(String.valueOf(s.charAt(i)));
-                        System.out.println(d[i]);
             }
+            //Usese numbers to generate 4 syndromes 
             d[6] = (((4*d[0])+(10*d[1])+(9*d[2])+(2*d[3])+d[4]+(7*d[5]))%11);
             d[7] = (((7*d[0])+(8*d[1])+(7*d[2])+(d[3])+(9*d[4])+(6*d[5]))%11);
             d[8] = (((9*d[0])+(d[1])+(7*d[2])+(8*d[3])+(7*d[4])+(7*d[5]))%11);
             d[9] = (((d[0])+(2*d[1])+(9*d[2])+(10*d[3])+(4*d[4])+(d[5]))%11);
             
-            
+            //Checks if any number is equal to 10.
             for(int i = 6; i < 10; i++){
                if(d[i]== 10){
-                  temp = 1;
-                  jTextArea1.setText("Sorry but that is a unusable number");
+                  valid = 0;
+                  jTextArea1.setText("Sorry but that is a unusable number \n The syndrom is: "+ d[6]+d[7]+d[8]+d[9]);
 
                 } 
             }
-            if (temp != 1 ){
+            if (valid == 1 ){
                     jTextArea1.setText("The result is: " + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]);
-
             }            
         }else{
                   jTextArea1.setText("Sorry but that is a unusable number");
-
         }
+    }//GEN-LAST:event_task1MouseClicked
 
+  /*  
+    Description:    This allows a user to input a 10 digit number 
+                    and test if its a valid.
+    Parameters:     args the command line arguments  
 
-
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/  
+    
+    private void task2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_task2MouseClicked
         // TODO add your handling code here:
          int[] d = new int[14];
-        int temp = 0;
-        int p = 0, q = 0, r = 0;
+        int validation = 1;
+        int p = 0, q = 0,r = 0;
         String s; 
         
         s = jTextField1.getText();
         s = s.replaceAll("[^\\d.]", "");
-        if(s.length() == 10){    
+        //Check if the number inputted is long enough 
+        if(s.length() == 10){  
+            //loops through all the numbers
             for(int i = 0; i <= 9; i++){
                         d[i]=Integer.parseInt(String.valueOf(s.charAt(i)));
                         System.out.println(d[i]);
             }
+            //Usese numbers to generate 4 syndromes 
             d[10] = ((d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9])%11);
             d[11] = (((d[0]*1)+(d[1]*2)+(d[2]*3)+(d[3]*4)+(d[4]*5)+(d[5]*6)+(d[6]*7)+(d[7]*8)+(d[8]*9)+(d[9]*10))%11);
-   
             d[12] = (((d[0]*1)+(d[1]*4)+(d[2]*9)+(d[3]*5)+(d[4]*3)+(d[5]*3)+(d[6]*5)+(d[7]*9)+(d[8]*4)+(d[9]))%11);
             d[13] = (((d[0])+(d[1]*8)+(d[2]*5)+(d[3]*9)+(d[4]*4)+(d[5]*7)+(d[6]*2)+(d[7]*6)+(d[8]*3)+(d[9]*10))%11);
 
             for(int i = 10; i < 13; i++){
-            if(d[i] >= 10){
-               temp = 1;
-               jTextArea1.setText("Sorry but that is a unusable number");
-             }
-            if(d[i] != 0 ){
-                temp = 1;
-                jTextArea1.setText("There is an error");
-                    p = ((d[11]^2)- (d[10]* d[12]));             
-                    q = ((d[10] * d[13])- (d[11] * d[12]));         
-                    r =  ((d[12]^2)-(d[11]*d[13]));     
+                //Checks if the sysdroms are greater then 9.
+                if(d[i] >= 10){
+                    validation = 0;
+                    jTextArea1.setText("Sorry but that is a unusable number");
+                    jTextArea1.setText("The syndrom is: "+ d[10]+d[11]+d[12]+d[13]);
 
-             }
+                 }
+                
+                //Check if the syndromes don't equal 0
+                if(d[i] != 0 ){
+                    validation = 0;
+                    jTextArea1.setText("There is an error \nThe syndrom is: "+ d[10]+d[11]+d[12]+d[13]);
+
+                        //These are used in a later task for error correction
+                        p = ((d[11]^2)- (d[10]* d[12]));             
+                        q = ((d[10] * d[13])- (d[11] * d[12]));         
+                        r =  ((d[12]^2)-(d[11]*d[13]));     
+
+                }
             }
-            if (temp != 1 ){
+            //Check anyone has said that the number isn't valid
+            if (validation == 1 ){
                     jTextArea1.setText("You have no errors.\n The result is: " 
                             + d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9]
                             + "\n Sydrome: "+d[10]+d[11]+d[12]+d[13]);
-
             }
         }else{
                   jTextArea1.setText("Sorry but that is a unusable number");
-
         }
+    }//GEN-LAST:event_task2MouseClicked
 
-    }//GEN-LAST:event_jButton2MouseClicked
+/*  
+    Description:    This is the main function for task 2.
+                    It's used to declare variables for 
+                    the user interface. 
+    Parameters:     args the command line arguments  
 
-    /**
-     * @param args the command line arguments
-     */
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -206,10 +246,12 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton task1;
+    private javax.swing.JButton task2;
     // End of variables declaration//GEN-END:variables
 }

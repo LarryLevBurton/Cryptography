@@ -19,7 +19,6 @@ import java.util.Arrays;
  *  (from https://gist.github.com/giraam/7413306 with minor changes)
  */
 public class Sha1New2018 {
-
     public static String sha1(String input) {
     String sha1 = null;
     try {
@@ -32,15 +31,20 @@ public class Sha1New2018 {
     }
     return sha1;
     }
-    /**
-     * @param args the command line arguments
-     */
+
+/*  
+    Description:    This is the main function for task 3
+                    (Password brute force) using Sha1 encryption.
+    Parameters:     args the command line arguments  
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/   
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
 
-        BufferedReader userInput = new BufferedReader (new InputStreamReader(System.in)); 
-  
  
+  
+        //Array storing hash which need to be cracked
         String[] givenHash = new String[12];
         givenHash[0] = "c2543fff3bfa6f144c2f06a7de6cd10c0b650cae";
         givenHash[1] = "b47f363e2b430c0647f14deea3eced9b0ef300ce";
@@ -55,76 +59,102 @@ public class Sha1New2018 {
         givenHash[10] = "02285af8f969dc5c7b12be72fbce858997afe80a";
         givenHash[11] = "57864da96344366865dd7cade69467d811a7961b";
 
-            char text[] = {' ',' ',' ',' ',' ',' '}; 
-            int textPositionA = 0;
-//            for(int textPositionA = 0; textPositionA < text.length; textPositionA++){
-//            for(int i = 0; i < givenHash.length; i++){
+        //Function for brute force. 
+        findWord(givenHash);
 
-                int temp = findWord(givenHash,text,textPositionA);
-//            } 
     }
     
-        // a variable to remember the start time,  use the following methods 
-
+     /*  
+        Description:    Sets up a starting point for the timer
+        Parameters:     long : timer
+        Returns:        long: start point of timer. 
+        Author(s):      Rong Yang
+    */   
         public static long timeStart(long timer) {
                 return timer = System.currentTimeMillis();
         }
 
-        public static String timeStop(String s, long timer) {
-            timer = System.currentTimeMillis() - timer;
-            switch (s) {
-                case "showMs":
-                case "":
-                    return timer + " milliseconds";
-                case "showSec":
-                    return timer/1000 + " seconds";
-                case "showMin":
-                    return timer/60000 +" Minutes " + (timer%60000)/1000 + " seconds";//+ "  milliseconds");
-                default:
-                    break;
-            }
-                return null;
-         }   
+    /*  
+        Description:    Generates length of time depending 
+                        on what you input. 
+        Parameters:     String s: used to select format
+                        long: time from when the timer started 
+        Returns:        String of to print results. 
+        Author(s):      Rong Yang
+    */   
+    public static String timeStop(String s, long timer) {
+        timer = System.currentTimeMillis() - timer;
+        switch (s) {
+            case "showMs":
+            case "":
+                return timer + " milliseconds";
+            case "showSec":
+                return timer/1000 + " seconds";
+            case "showMin":
+                return timer/60000 +" Minutes " + (timer%60000)/1000 + " seconds";//+ "  milliseconds");
+            default:
+                break;
+        }
+            return null;
+     }   
 
-    
-        public static int findWord(String[] hash,char text[],int pivot){
-                char characters[] = {' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
-                String newHash = "";
-                String textString = "";
-                int count = 0;
-                long timer = 0,time = 0;
-                timer = timeStart(timer);
-
-//                Timer timer = new Timer();
+    /*  
+        Description:    Sets up a starting point for the timer
+        Parameters:     String[] hash: an array of hash that 
+                                    need to be cracked
+        Returns:        Int: 1 all have been crack 
+                             0 if any are left. 
+        Author(s):      Laurence Burton (15003639)
+    */  
+        public static int findWord(String[] hash){
+            char text[] = {' ',' ',' ',' ',' ',' '};
+            //Array of character to loop throug. Space is included so that words smaller then 6 will be generated. 
+            char characters[] = {' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
+            String newHash = "";
+            String textString = "";
+            //Count of how many machets have been generated. 
+            int count = 0;
+            
+            long timer = 0;
+            timer = timeStart(timer);
+            //Loops through the first position of the password. 
             for(int pos0 = 0; pos0 < characters.length;pos0++){
+                //Puts a new letter from the character array into the first position
                 text[0] = characters[pos0];
-              for(int pos1 = 0; pos1 < characters.length;pos1++){
+                //The previous two line are repeated for each charact in the word. (6 letters = 6 loops)
+                for(int pos1 = 0; pos1 < characters.length;pos1++){
                     text[1] = characters[pos1];
-                for(int pos2 = 0; pos2 < characters.length;pos2++){
+                    for(int pos2 = 0; pos2 < characters.length;pos2++){
                         text[2] = characters[pos2];
-                    for(int pos3 = 0; pos3 < characters.length;pos3++){
-                        text[3] = characters[pos3];
-                        for(int pos4 = 0; pos4 < characters.length;pos4++){
-                            text[4] = characters[pos4];
-                            for(int pos5 = 0; pos5 < characters.length;pos5++){
-                                text[5] = characters[pos5];
-                                textString = new String(text).replaceAll("\\s+", "");
-                                newHash = Sha1New2018.sha1(textString);
-                                if(Arrays.stream(hash).anyMatch(newHash::equals)){
-                                    for(int i = 0; i < hash.length; i++){
-                                        if(hash[i].equals(newHash)){
-//                                            time = System.currentTimeMillis() - timer;
-                                            System.out.println(i + " : " + textString + " : " + timeStop("showMin", timer) +" : "+ newHash); 
-                                            hash[i] = ""; 
-                                            break;
+                        for(int pos3 = 0; pos3 < characters.length;pos3++){
+                            text[3] = characters[pos3];
+                            for(int pos4 = 0; pos4 < characters.length;pos4++){
+                                text[4] = characters[pos4];
+                                for(int pos5 = 0; pos5 < characters.length;pos5++){
+                                    text[5] = characters[pos5];
+                                    //Removes spaces from word
+                                    textString = new String(text).replaceAll("\\s+", "");
+                                    //Generates new hash with new word. 
+                                    newHash = Sha1New2018.sha1(textString);
+                                    //Checks if the new hash equals any of the old hashes. 
+                                    if(Arrays.stream(hash).anyMatch(newHash::equals)){
+                                        //Loops through array of hashes.
+                                        for(int i = 0; i < hash.length; i++){
+                                            //Compares the newley generated hash to the current position in the array of hash. 
+                                            if(hash[i].equals(newHash)){
+                                                System.out.println(i + " : " + textString + " : " + timeStop("showMin", timer) +" : "+ newHash); 
+                                                //Removes hash from array/
+                                                hash[i] = ""; 
+                                                //Stops looks at hashs and keeps generating words. 
+                                                break;
+                                            }
+                                        }
+                                        count++;
+                                        //Checks if all hashed have been cracked.
+                                        if(count == hash.length){
+                                            return 1;
                                         }
                                     }
-//                                        System.out.println("Password has been cracked\n"); 
-                                    count++;
-                                    if(count == hash.length){
-                                        return 0;
-                                    }
-                                }
 
                                 }
                             }
@@ -135,6 +165,17 @@ public class Sha1New2018 {
             return 0;
         }
 
+         /*  
+        Description:    Old function for cracking a keys
+                        that is extremly slow
+        Parameters:     String[] hash: an array of hash that 
+                                    need to be cracked
+                        char text[]: last word that was generated. 
+                        int pivot: current position that being changed. 
+        Returns:        Int: # all have been crack 
+                             0 if any are left. 
+        Author(s):      Laurence Burton (15003639)
+    */
     public static int loopChar(String[] hash,char text[],int pivot){
         char characters[] = {' ','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','u','r','s','t','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
         int count = 0;
@@ -150,25 +191,18 @@ public class Sha1New2018 {
                         text[textPositionB] = characters[charPositionA];
                         textString = new String(text).replaceAll("\\s+", "");
                         newHash = Sha1New2018.sha1(textString);
-//                        System.out.println(textString);
                         if(Arrays.stream(hash).anyMatch(newHash::equals)){
                             System.out.println("Password has been cracked\n"); 
                             count++;
                         }
-//                        if(hash.equals(newHash)){
-//                            return 1;
-//                        }
                         temp2 = loopChar(hash,text, pivot);
                         if(count == hash.length){
-                            return count;
-                           
+                            return count;  
                         }
-                       
                     }
                 }
             }
         }
-            
                  
         return 0;
     } 

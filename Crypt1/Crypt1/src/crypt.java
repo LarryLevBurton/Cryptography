@@ -6,7 +6,7 @@
 
 /**
  *
- * @author larry
+ * @author Laurence Burton 
  */
 public class crypt extends javax.swing.JFrame {
 
@@ -27,35 +27,41 @@ public class crypt extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        clear = new javax.swing.JButton();
+        isbn = new javax.swing.JButton();
+        creditCard = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Clear");
-        jButton1.setToolTipText("");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        clear.setText("Clear");
+        clear.setToolTipText("");
+        clear.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                clearMouseClicked(evt);
             }
         });
 
-        jButton2.setText("ISBN ");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        isbn.setText("ISBN ");
+        isbn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                isbnMouseClicked(evt);
             }
         });
 
-        jButton3.setText("Credit Card");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        creditCard.setText("Credit Card");
+        creditCard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                creditCardMouseClicked(evt);
             }
         });
 
@@ -63,78 +69,120 @@ public class crypt extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabel2.setText("Output:");
+
+        jLabel3.setText("ISBN:");
+
+        jLabel4.setText("Credit Card:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel2)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(37, 37, 37)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton3)
-                .addGap(60, 60, 60))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                            .addComponent(jTextField2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(isbn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(creditCard)))
+                    .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(isbn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(67, 67, 67))
+                    .addComponent(jLabel4)
+                    .addComponent(creditCard))
+                .addGap(29, 29, 29)
+                .addComponent(clear, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(41, 41, 41))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
+    
+/*  
+    Description:    This function runs when the user clicks 
+                    the clear button on the user interface. 
+                    It will then clear all the text that the
+                    user has inputed. 
+
+    Parameters:     java.awt.event.MouseEvent evt  
+
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/
+    private void clearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearMouseClicked
         
         //Clear Fields
-        jTextField1.setText("test");
-        jTextField2.setText("");
+        jTextField2.setText("");     
+        jTextField1.setText("");
+        jTextArea1.setText("");
 
-    }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        // TODO add your handling code here:
+
+    }//GEN-LAST:event_clearMouseClicked
+
+    /*  
+    Description:    This function runs when the user clicks 
+                    the ISBN button on the user interface. 
+                    It will then take the number the user inputted 
+                    and check if it's a valid credit card number
+
+    Parameters:     java.awt.event.MouseEvent evt  
+
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/
+    private void isbnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isbnMouseClicked
         
         int[] d = new int[10]; 
         int sum = 0;
         String oldString;
 	oldString = jTextField1.getText();
         String newString = oldString.replaceAll("-","");
-//        System.out.println(newString.length()); ;
 
+        //Checks the length of the inputted number 
         if(newString.length() == 10){
            jTextArea1.setText("You number is getting processed.");
+           //loops through each number. 
             for (int i = 0; i < (d.length);i++){
                 d[i] = Integer.parseInt(String.valueOf(newString.charAt(i)));
+                //Ever number is multiplied by it's possiton except for the final digit. 
                 if(i != 9){              
                     sum = sum +(d[i]*(i+1));
                 }
             }
-            sum = (sum % 11);
-
-            if(sum == d[9]){
+            //The sum is divided by 11 and checked if the remainder equals the final digit. 
+            if((sum % 11) == d[9]){
                 jTextArea1.setText("Your ISBN number is valid");
             }else{
                 jTextArea1.setText("Sorry that number is not valid");
@@ -143,44 +191,49 @@ public class crypt extends javax.swing.JFrame {
                 jTextArea1.setText("Sorry that number is not valid");
 
         }
-    }//GEN-LAST:event_jButton2MouseClicked
+    }//GEN-LAST:event_isbnMouseClicked
+/*  
+    Description:    This function runs when the user clicks 
+                    the credit card button on the user interface. 
+                    It will then take the number the user inputted 
+                    and check if it's a valid credit card number
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        // TODO add your handling code here:
-        
-        
-        
+    Parameters:     java.awt.event.MouseEvent evt  
+
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/
+    private void creditCardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_creditCardMouseClicked
+
         int[] d = new int[16]; 
-        int sum = 0, temp;
+        int sum = 0;
         String oldString;
 	oldString = jTextField2.getText();
         String newString = oldString.replaceAll("-","");
-//        System.out.println(newString.length()); ;
-
+        
+        //Checks if the inputed string is long enough
         if(newString.length() == 16){
            jTextArea1.setText("You number is getting processed.");
+            //Loops through each charater of the inputed string and casts it to an array of ints
             for (int i = 0; i < (d.length);i++){
-                d[i] = Integer.parseInt(String.valueOf(newString.charAt(i)));
-//                if(i != 15){
-                    
-                    if((i % 2) == 0){
-                            if((d[i]*2) > 9){
-                                sum += (d[i]*2)- 9;
-                            }else{
-                                sum += d[i]*2;
-                            }
-                        }else{
-                            sum += d[i];
-
-                        }
-                                            System.out.println(sum);
-
-//                    }
-
-
+                d[i] = Integer.parseInt(String.valueOf(newString.charAt(i)));     
+                //This doubles every second positions. 
+                //It then checks if the results is less 
+                //then 10. If not it takes away 9. 
+                //Then they're all added together. 
+                if((i % 2) == 0){ 
+                    if((d[i]*2) > 9){
+                        sum += (d[i]*2)- 9;
+                    }else{
+                        sum += d[i]*2;
+                    }
+                }else{
+                    sum += d[i];
+                }
             }
+            //The total sum is modded by 10;
             sum = (sum % 10);
-        System.out.println(newString.length() +  ":" + sum + ":" + d[15]);
+            //If the results is 0 then it a valid number
             if(sum == 0){
                 jTextArea1.setText("Your Credit Card number is valid");
             }else{
@@ -191,11 +244,16 @@ public class crypt extends javax.swing.JFrame {
 
         }
 
-    }//GEN-LAST:event_jButton3MouseClicked
+    }//GEN-LAST:event_creditCardMouseClicked
+/*  
+    Description:    This is the main function for task 1.
+                    It's used to declare variables for 
+                    the user interface. 
+    Parameters:     args the command line arguments  
 
-    /**
-     * @param args the command line arguments
-     */
+    Returns:        void
+    Author(s):      Laurence Burton (15003639)  
+*/
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -229,9 +287,13 @@ public class crypt extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton clear;
+    private javax.swing.JButton creditCard;
+    private javax.swing.JButton isbn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
