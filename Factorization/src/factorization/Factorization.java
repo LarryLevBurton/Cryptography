@@ -59,6 +59,7 @@ public class Factorization {
 //        fermat(18, 2450609331732137L);
 
 //Task 4b        
+//generateSmooth(4041,3);
         dixon(1, 299);
 //        dixon(1, 224573);
 //        dixon(2, 299203);    
@@ -167,19 +168,26 @@ public class Factorization {
                 }
             }
         }
-        System.out.println("r2: " +  results2[0] + " : " + results2[1] + " : " + results2[2] + " : " + results2[3]);
-        
+//        System.out.println("r2: " +  results2[0] + " : " + results2[1] + " : " + results2[2] + " : " + results2[3]);
+//        results2[0] = 0;
+//        results2[1] = 2;
+//        results2[2] = 0;
+//        results2[3] = 2;
+//        randomNumMulti = 80;
+//        
         
         //multiplies the powerlist
         
         for(int j = 0; j < 4; j++){
 //            results2[j] = results2[j];
-            long temp = (long) pow((results2[j]),pwr[j]);
-            System.out.println(temp);
+            long temp = (long) pow(pwr[j],results2[j]);
+            System.out.println(results2[j] + " ^ "+ pwr[j] +" =" +temp);
             if(temp != 0) {
-                powerMulti += temp;
+                powerMulti *= temp;
             }
         }
+        System.out.println(powerMulti);
+
         //Multiples the two smooth numbers
         
         
@@ -188,7 +196,6 @@ public class Factorization {
 //        randomNumMulti = randomNumMulti;
 //       powerMulti =(powerMulti);
         long sqrtPower = (long)sqrt(powerMulti);
-        long sqrtMulti = (long)sqrt(randomNumMulti);
 
         //squre root of the powers 
         //Gets the GCD of x+y and N
@@ -196,15 +203,16 @@ public class Factorization {
         long y = abs(randomNumMulti-sqrtPower);
 
         //Gets the GCD of x-y and N
+        System.out.println("X: " + randomNumMulti + " : Y:" +sqrtPower);
+
         System.out.println("X: " + x + " : Y:" + y + " : " + powerMulti);
         x = gcd((x),n);
         y = gcd(abs(y),n);
 
         
         System.out.println("ID: "+ id + " The factor of " + n + " is " + x+" * "+ y + " Time take: "+ timeStop("showMin", timer));
-
-        return;
-       //checks if the result is correct
+   
+        //checks if the result is correct
 //       if((x*y) != n){
 //           //If it isn't it will run again
 //           dixon(id,n);
@@ -215,6 +223,7 @@ public class Factorization {
 //
 //        return;
 //       }
+
     }
 
     /*  
