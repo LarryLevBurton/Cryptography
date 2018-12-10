@@ -118,61 +118,103 @@ public class Factorization {
         timer = timeStart(timer);
         
         Random random = new Random();
-        long randomNumber[] = {0,0};        
-        long randomNumberSq[] = {0,0};
+        long randomNumber = 0;        
+        long randomNumberSq = 0;
         long powerMulti = 1;
 
         int squareRoot =  (int)sqrt(n);
-        long rNum[] = {0,0};
-        long results[][] = {{0,0,0,0},{0,0,0,0}};
-        
-        int numberPlace = 0;
-
+        long rNum = 0;
+        long results[]= {0,0,0,0};
+        int pwr[] = {2,3,5,7};
+        long results2[] = {0,0,0,0};
+        long results3 = 1;
+        long randomNumMulti = 1;
+        int numberPlace = 1;
+        int notEven = 0;
+        int count = 0;
+        int powCount = 0;
         //Loop through untill a smooth number has been randomily generated.
         //Higher then square root of the number and less the numer. 
-        while(numberPlace < 2){
-            randomNumber[numberPlace] = random.nextInt((int)n+1 ) + (int)(squareRoot);
-            randomNumberSq[numberPlace]= randomNumber[numberPlace] * randomNumber[numberPlace];
-            rNum[numberPlace] = (randomNumberSq[numberPlace])%n;
-            
+        while(notEven == 0 ){
+            randomNumber = random.nextInt((int)n+1 ) + (int)(squareRoot);
+            randomNumberSq= randomNumber * randomNumber;
+            rNum = randomNumberSq%n;
             //Checks if the number is smooth
-            if(isItSmooth(rNum[numberPlace],3) == 1){ 
+            if(isItSmooth(rNum,3) == 1){                
                 //generates the power list (smooth 7)
-                results[numberPlace] = generateSmooth(rNum[numberPlace],3);
-                //Moves on to the second random number
-                numberPlace++;
+                results = generateSmooth(rNum,3);
+                System.out.println(randomNumber);
+                //gets the total count of powers
+                powCount += results[4];
+                //Adds one to the count of numbers
+                count++;
+                //The randomNumber is multipled into the other numbers
+                randomNumMulti *= randomNumber;
+                System.out.println("multi: "+randomNumMulti);
+
+                //add all the powers together
+//                for(int j = 0; j < 4; j++){
+                    results2[0] += results[0];
+                    results2[1] += results[1];
+                    results2[2] += results[2];
+                    results2[3] += results[3];
+//            }                
+                System.out.println("r1: " + results[0] + " : " + results[1] + " : " + results[2] + " : " + results[3]);
+                
+                //checks if the power list is even
+                if((results2[0]%2 == 0)&&(results2[1]%2 == 0)&&(results2[2]%2 == 0)&&(results2[3]%2 == 0)){
+                    break;   
+                }
             }
         }
-
+        System.out.println("r2: " +  results2[0] + " : " + results2[1] + " : " + results2[2] + " : " + results2[3]);
+        
+        
+        //multiplies the powerlist
+        
+        for(int j = 0; j < 4; j++){
+//            results2[j] = results2[j];
+            long temp = (long) pow((results2[j]),pwr[j]);
+            System.out.println(temp);
+            if(temp != 0) {
+                powerMulti += temp;
+            }
+        }
         //Multiples the two smooth numbers
-        long randomNumMulti = (randomNumber[0] * randomNumber[1]);
         
         
         //Loops through the power lists.
         //Adds the pairs together and times them to the previous power. 
-        for(int j = 0; j < 4; j++){
-            long temp = results[0][j]+results[1][j];
-            if(temp != 0) {powerMulti *= temp; }
-        }
+//        randomNumMulti = randomNumMulti;
+//       powerMulti =(powerMulti);
+        long sqrtPower = (long)sqrt(powerMulti);
+        long sqrtMulti = (long)sqrt(randomNumMulti);
 
         //squre root of the powers 
-        long sqrtMulti = (long)sqrt(powerMulti);
         //Gets the GCD of x+y and N
-        long x = gcd(randomNumMulti+sqrtMulti,n);
-        //Gets the GCD of x-y and N
-        long y = gcd(abs(randomNumMulti-sqrtMulti),n);
+        long x = abs(randomNumMulti+sqrtPower);
+        long y = abs(randomNumMulti-sqrtPower);
 
-       //checks if the result is correct
-       if((x*y) != n){
-           //If it isn't it will run again
-           dixon(id,n);
-           return;
-       } else{
-         //If it was correct it will print the result
-        System.out.println("ID: "+ id + " The factor of " + n + " is " + y +" * "+ x + " Time take: "+ timeStop("showMin", timer));
+        //Gets the GCD of x-y and N
+        System.out.println("X: " + x + " : Y:" + y + " : " + powerMulti);
+        x = gcd((x),n);
+        y = gcd(abs(y),n);
+
+        
+        System.out.println("ID: "+ id + " The factor of " + n + " is " + x+" * "+ y + " Time take: "+ timeStop("showMin", timer));
 
         return;
-       }
+       //checks if the result is correct
+//       if((x*y) != n){
+//           //If it isn't it will run again
+//           dixon(id,n);
+//           return;
+//       } else{
+//         //If it was correct it will print the result
+//        System.out.println("ID: "+ id + " The factor of " + n + " is " + y +" * "+ x + " Time take: "+ timeStop("showMin", timer));
+//
+//        return;
+//       }
     }
 
     /*  
@@ -217,7 +259,7 @@ public class Factorization {
         long x = 0;
         int i = 0;
         long powerList[] =  {2,3,5,7};        
-        long results[] =    {0,0,0,0};//2,3,5,7
+        long results[] =    {0,0,0,0,0};//2,3,5,7,count
      
         while(number != 0){
             //Mods number by power X
@@ -234,7 +276,9 @@ public class Factorization {
                 //If the number could be dived the number is update with the result
                 number = (number/powerList[i]);
                 //And the result list is updated. 
-                 results[i]++;
+                 results[i]++;               
+                 results[4]++;
+
             }
         }
         return null;
