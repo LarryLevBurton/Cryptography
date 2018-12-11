@@ -80,7 +80,7 @@ public class Factorization {
 //        dixon(16, 576460921650883L);
 //        dixon(17, 1957432135202107L);
 //        dixon(18, 2450609331732137L);
-        
+//        
     }
     
 /*  
@@ -125,10 +125,12 @@ public class Factorization {
 
         int squareRoot =  (int)sqrt(n);
         long rNum = 0;
-        long results[]= {0,0,0,0};
+        int results[]= {0,0,0,0};
         int pwr[] = {2,3,5,7};
-        long results2[] = {0,0,0,0};
-        long results3 = 1;
+        int results2[] = {0,0,0,0};
+        long results3[] = {0,0,0,0};
+
+        List<Integer> primeList = new ArrayList<Integer>();
         long randomNumMulti = 1;
         int numberPlace = 1;
         int notEven = 0;
@@ -138,37 +140,56 @@ public class Factorization {
         //Higher then square root of the number and less the numer. 
         while(notEven == 0 ){
             randomNumber = random.nextInt((int)n+1 ) + (int)(squareRoot);
+//            System.out.println(randomNumber);
             randomNumberSq= randomNumber * randomNumber;
             rNum = randomNumberSq%n;
+//            System.out.println("num: "  +rNum);
             //Checks if the number is smooth
             if(isItSmooth(rNum,3) == 1){                
                 //generates the power list (smooth 7)
                 results = generateSmooth(rNum,3);
-                System.out.println(randomNumber);
+//                for(int k = 0; k < 4; k++){
+//                    primeList.add(results[k]);
+//                }
+//                System.out.println(randomNumber);
                 //gets the total count of powers
                 powCount += results[4];
                 //Adds one to the count of numbers
                 count++;
                 //The randomNumber is multipled into the other numbers
-                randomNumMulti *= randomNumber;
-                System.out.println("multi: "+randomNumMulti);
+//                System.out.println("multi: "+randomNumMulti);
 
                 //add all the powers together
 //                for(int j = 0; j < 4; j++){
+                results3[0] += results[0];
+                results3[1] += results[1];
+                results3[2] += results[2];
+                results3[3] += results[3];
+                
+                if(count == 0 ){
                     results2[0] += results[0];
                     results2[1] += results[1];
                     results2[2] += results[2];
-                    results2[3] += results[3];
-//            }                
-                System.out.println("r1: " + results[0] + " : " + results[1] + " : " + results[2] + " : " + results[3]);
-                
+                    results2[3] += results[3];               
+                }
+////            }                
+//                System.out.println("r1: " + results[0] + " : " + results[1] + " : " + results[2] + " : " + results[3]);
+////              System.out.println("r2: " + results2[0] + " : " + results2[1] + " : " + results2[2] + " : " + results2[3]);
+//                System.out.println("r3: " + results3[0] + " : " + results3[1] + " : " + results3[2] + " : " + results3[3]);
+
                 //checks if the power list is even
-                if((results2[0]%2 == 0)&&(results2[1]%2 == 0)&&(results2[2]%2 == 0)&&(results2[3]%2 == 0)){
+                if((results3[0]%2 == 0)&&(results3[1]%2 == 0)&&(results3[2]%2 == 0)&&(results3[3]%2 == 0) && count > 1){
+                    randomNumMulti *= randomNumber;
                     break;   
+                }else{
+                    results3[0] = results2[0];
+                    results3[1] = results2[1];
+                    results3[2] = results2[2];
+                    results3[3] = results2[3];
                 }
             }
         }
-//        System.out.println("r2: " +  results2[0] + " : " + results2[1] + " : " + results2[2] + " : " + results2[3]);
+        System.out.println("r2: " +  results3[0] + " : " + results3[1] + " : " + results3[2] + " : " + results3[3]);
 //        results2[0] = 0;
 //        results2[1] = 2;
 //        results2[2] = 0;
@@ -179,14 +200,15 @@ public class Factorization {
         //multiplies the powerlist
         
         for(int j = 0; j < 4; j++){
-//            results2[j] = results2[j];
-            long temp = (long) pow(pwr[j],results2[j]);
-            System.out.println(results2[j] + " ^ "+ pwr[j] +" =" +temp);
+            long temp = (long) pow(pwr[j],results3[j]);
+//            System.out.println(results3[j] + " ^ "+ pwr[j] +" =" + temp);
             if(temp != 0) {
                 powerMulti *= temp;
             }
         }
-        System.out.println(powerMulti);
+//        System.out.println(powerMulti);
+//        System.out.println(powerMulti);
+
 
         //Multiples the two smooth numbers
         
@@ -196,16 +218,20 @@ public class Factorization {
 //        randomNumMulti = randomNumMulti;
 //       powerMulti =(powerMulti);
         long sqrtPower = (long)sqrt(powerMulti);
+        sqrtPower %= n;
+        randomNumMulti %= n;
+//        long sqrtPower = powerMulti/2;
 
         //squre root of the powers 
         //Gets the GCD of x+y and N
-        long x = abs(randomNumMulti+sqrtPower);
+        System.out.println(randomNumMulti + " : " +sqrtPower);
+        long x = randomNumMulti+sqrtPower;
         long y = abs(randomNumMulti-sqrtPower);
 
         //Gets the GCD of x-y and N
-        System.out.println("X: " + randomNumMulti + " : Y:" +sqrtPower);
+//        System.out.println("X: " + randomNumMulti + " : Y:" +sqrtPower);
 
-        System.out.println("X: " + x + " : Y:" + y + " : " + powerMulti);
+//        System.out.println("X: " + x + " : Y:" + y + " : " + powerMulti);
         x = gcd((x),n);
         y = gcd(abs(y),n);
 
@@ -264,11 +290,11 @@ public class Factorization {
     Returns:        long[]: the power list is returned    
     Author(s):      Laurence Burton (15003639)
 */    
-    public static long[] generateSmooth(long number, int p){
+    public static int[] generateSmooth(long number, int p){
         long x = 0;
         int i = 0;
-        long powerList[] =  {2,3,5,7};        
-        long results[] =    {0,0,0,0,0};//2,3,5,7,count
+        int powerList[] =  {2,3,5,7};        
+        int results[] =    {0,0,0,0,0};//2,3,5,7,count
      
         while(number != 0){
             //Mods number by power X
@@ -296,8 +322,12 @@ public class Factorization {
     
     public static long gcd(long a, long b){
 
+     
+//        System.out.println(a);
+//        System.out.println(b);
+
         long x = b%a;
-        
+//        System.out.println(x);
         while (x != 0){
             
             b = a; 
