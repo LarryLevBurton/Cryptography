@@ -106,23 +106,38 @@ public class Factorization {
 //        timer = timeStart(timer);
         int x = 0, y = 0;    
 //        getIntSqrt(x);
-        BigInteger one = BigInteger.valueOf(1); 
-        BigInteger X;// = new BigInteger("");
+        BigInteger one = BigInteger.valueOf(1);       
+        BigInteger zero = BigInteger.valueOf(0);         
+        BigInteger TWO = BigInteger.valueOf(2); 
 
+
+        BigInteger X = BigInteger.valueOf(1);
+        BigInteger Y = BigInteger.valueOf(0);
+        BigInteger temp = n;
+
+        BigInteger A = getIntSqrt(n);
+        A = A.add(one);
+        BigInteger Bsq = A.multiply(TWO);
+        Bsq = Bsq.add(one);
 //        BigInteger A = new BigInteger ("2450609331732137");
 
         //This while loop implements the Fermat algorith (a2 − N = b2) increment y until the correct number has been generated. 
 //                BigInteger A = new BigInteger ("2450609331732137");
-
+           BigInteger T = getIntSqrt(Bsq);
 //        while ((sqrt(n+((++y)*y))%1) != 0){
-            BigInteger Y = BigInteger.valueOf((++y)*y); 
-            System.out.println(Y);
-
-            n = n.add(Y);
-            System.out.println(n);
-            X =  n.sqrt();
-
-//            System.out.println(getIntSqrt(n));
+//          System.out.println(comparevalue);
+            while (T.multiply(T) != Bsq){
+                A  = A.add(one);
+                Bsq = n.subtract(A.multiply(A));
+                T = getIntSqrt(Bsq);
+//                Y =  Y.multiply(Y); 
+                System.out.println("T: "+ T + " Multi: " + T.multiply(T) + " Bsq: " + Bsq + " : " + A);
+//                temp = temp.add(Y);
+//                //            System.out.println(n);
+//                temp = getIntSqrt(temp);
+//                X = temp.mod(one);
+            }
+        System.out.println(A + " : " +  Bsq);
 
 //            n.mod(one);
 //            getIntSqrt(BigInteger(n+((++y)*y))%1);
@@ -150,7 +165,9 @@ public class Factorization {
         timer = timeStart(timer);
         
         Random random = new Random();
-        long randomNumber = 0;        
+        long randomNumber = 0;  
+        long randomNumberTemp = 0;        
+
         long randomNumberSq = 0;
         long powerMulti = 1;
         long randomNumMulti = 1;
@@ -167,9 +184,16 @@ public class Factorization {
         //Loop through untill a smooth number has been randomily generated.
         //Higher then square root of the number and less the numer. 
         while(notEven == 0 ){
-            randomNumber = random.nextInt((int)n+1 ) + (int)(squareRoot);
+            randomNumberTemp = random.nextInt((int)n+1 ) + (int)(squareRoot);
+            while(randomNumberTemp == randomNumMulti){
+                randomNumberTemp = random.nextInt((int)n+1 ) + (int)(squareRoot);
+                System.out.println("no: " + randomNumberTemp + " : " + randomNumber);
+            }
+            
+//            System.out.println("Random: " + randomNumberTemp + " : " + randomNumber + " : " + randomNumMulti);
+            randomNumber = randomNumberTemp;
 //            System.out.println(randomNumber);
-            randomNumberSq= randomNumber * randomNumber;
+            randomNumberSq = randomNumber * randomNumber;
             rNum = randomNumberSq%n;
             //Checks if the number is smooth
             if(isItSmooth(rNum,3) == 1){                
@@ -178,7 +202,6 @@ public class Factorization {
 
                 //gets the total count of powers
                 //Adds one to the count of numbers that have been generated.
-                count++;
 
                 results3[0] += results[0];
                 results3[1] += results[1];
@@ -191,14 +214,16 @@ public class Factorization {
                     results2[0] += results[0];
                     results2[1] += results[1];
                     results2[2] += results[2];
-                    results2[3] += results[3];               
+                    results2[3] += results[3];      
+                    count++;
+
                 }
 //                System.out.println("r1: " + results[0] + " : " + results[1] + " : " + results[2] + " : " + results[3]);
 ////              System.out.println("r2: " + results2[0] + " : " + results2[1] + " : " + results2[2] + " : " + results2[3]);
 //                System.out.println("r3: " + results3[0] + " : " + results3[1] + " : " + results3[2] + " : " + results3[3]);
 
                 //checks if the total power list is even
-                if((results3[0]%2 == 0)&&(results3[1]%2 == 0)&&(results3[2]%2 == 0)&&(results3[3]%2 == 0) && count > 1){
+                if((results3[0]%2 == 0)&&(results3[1]%2 == 0)&&(results3[2]%2 == 0)&&(results3[3]%2 == 0) && count == 1){
                     //if it's even time the resutl
                     randomNumMulti *= randomNumber;
                     break;   
@@ -234,7 +259,7 @@ public class Factorization {
 
         //Gets the GCD of x-y and N
         x = gcd((x),n);
-        y = gcd(abs(y),n);
+        y = gcd(y,n);
 
         
         System.out.println("ID: "+ id + " The factor of " + n + " is " + x+" * "+ y + " Time take: "+ timeStop("showMs", timer));
@@ -366,7 +391,7 @@ public class Factorization {
 
 /* It returns s where s^2 =< x < (s+1)^2, that is s = floor(sqrt(x))
     */
-   BigInteger getIntSqrt(BigInteger x){
+   public static BigInteger getIntSqrt(BigInteger x){
            BigInteger s; // final result 
            BigInteger currentRes = BigInteger.valueOf(0); // init value is 0
            BigInteger currentSum = BigInteger.valueOf(0); // init value is 0
