@@ -40,28 +40,50 @@ public class Factorization {
 
 
 //  Task 4a      
-//        fermat(1, 224573);        
-//        fermat(2, 299203);    
-//        fermat(3, 1963867);
-//        fermat(4, 6207251);
-//        fermat(5, 14674291);
-//        fermat(6, 23128513);
-//        fermat(7, 254855791);
-//        fermat(8, 428279361);
-//
-//        fermat(9, 159649552547L);
-//        fermat(10, 189061250479L);
-//        fermat(11, 2211744201787L);
-//        fermat(12, 7828669742987L);
-//        fermat(13, 48560209712519L);
-//        fermat(14, 35872004189003L);
-//        fermat(15, 737785058178599L);
-//        fermat(16, 576460921650883L);
-//        fermat(17, 1957432135202107L);
-        BigInteger A = new BigInteger ("2450609331732137");
+        BigInteger number1 = new BigInteger ("224573");
+        BigInteger number2 = new BigInteger ("299203");
+        BigInteger number3 = new BigInteger ("1963867");
+        BigInteger number4 = new BigInteger ("6207251");
+        BigInteger number5 = new BigInteger ("14674291");
+        BigInteger number6 = new BigInteger ("23128513");
+        BigInteger number7 = new BigInteger ("254855791");
+        BigInteger number8 = new BigInteger ("428279361");
 
-        fermat(18, A);
+        BigInteger number9 = new BigInteger ("159649552547");
+        BigInteger number10 = new BigInteger ("189061250479");
+        BigInteger number11 = new BigInteger ("2211744201787");
+        BigInteger number12 = new BigInteger ("7828669742987");
+        BigInteger number13 = new BigInteger ("48560209712519");
+        BigInteger number14 = new BigInteger ("35872004189003");
+        BigInteger number15 = new BigInteger ("737785058178599");
+        BigInteger number16 = new BigInteger ("576460921650883");
+        BigInteger number17 = new BigInteger ("1957432135202107");       
+        BigInteger number18 = new BigInteger ("2450609331732137");
 
+
+
+        fermat(1,number1);        
+        fermat(2,number2);    
+        fermat(3,number3);
+        fermat(4,number4);
+        fermat(5,number5);
+        fermat(6,number6);
+        fermat(7,number7);
+        fermat(8,number8);
+
+        fermat(9,number9);
+        fermat(10,number10);
+        fermat(11,number11);
+        fermat(12,number12);
+        fermat(13,number13);
+        fermat(14,number14);
+        fermat(15,number15);
+        fermat(16,number16);
+        fermat(17,number17);     
+        fermat(18,number18);
+
+
+        
 //Task 4b        
 //long  i = isItSmooth(45,3);
 //System.out.println(i);
@@ -100,52 +122,36 @@ public class Factorization {
         Author(s):      Laurence Burton (15003639)
 */  
     public static void fermat(int id, BigInteger n){
-        
-        System.out.println(n);
-//        long timer = 0;
-//        timer = timeStart(timer);
-        int x = 0, y = 0;    
-//        getIntSqrt(x);
-        BigInteger one = BigInteger.valueOf(1);       
-        BigInteger zero = BigInteger.valueOf(0);         
-        BigInteger TWO = BigInteger.valueOf(2); 
+            
+        //Vars for timer
+        long timer = 0;
+        timer = timeStart(timer);
 
-
+        BigInteger ONE = BigInteger.valueOf(1);       
         BigInteger X = BigInteger.valueOf(1);
         BigInteger Y = BigInteger.valueOf(0);
-        BigInteger temp = n;
-
+        BigInteger sqrtT = BigInteger.valueOf(0);
+        BigInteger sqrtTmultiply = BigInteger.valueOf(0);
         BigInteger A = getIntSqrt(n);
-        A = A.add(one);
-        BigInteger Bsq = A.multiply(TWO);
-        Bsq = Bsq.add(one);
-//        BigInteger A = new BigInteger ("2450609331732137");
-
-        //This while loop implements the Fermat algorith (a2 − N = b2) increment y until the correct number has been generated. 
-//                BigInteger A = new BigInteger ("2450609331732137");
-           BigInteger T = getIntSqrt(Bsq);
-//        while ((sqrt(n+((++y)*y))%1) != 0){
-//          System.out.println(comparevalue);
-            while (T.multiply(T) != Bsq){
-                A  = A.add(one);
-                Bsq = n.subtract(A.multiply(A));
-                T = getIntSqrt(Bsq);
-//                Y =  Y.multiply(Y); 
-                System.out.println("T: "+ T + " Multi: " + T.multiply(T) + " Bsq: " + Bsq + " : " + A);
-//                temp = temp.add(Y);
-//                //            System.out.println(n);
-//                temp = getIntSqrt(temp);
-//                X = temp.mod(one);
-            }
-        System.out.println(A + " : " +  Bsq);
-
-//            n.mod(one);
-//            getIntSqrt(BigInteger(n+((++y)*y))%1);
-//             X = n.sqrt();
+        //Adds one to a
+        A = A.add(ONE);
         
-//        x = sqrt(n+(y*y));
-        //To find the factors you have to do X= X-Y and Y= = X+Y. I've done this within the print statement below.
-//        System.out.println("ID: "+ id + " The factor of " + n + " is " + intValue(x+y) +" * "+ intValue(x-y) +"" + " Time take: "+ timeStop("showMs", timer));
+        //Squares A and subtracts the number 
+        BigInteger Bsq = ((A.multiply(A)).subtract(n)).abs();
+        //Gets the square root of BSQ
+        BigInteger T = getIntSqrt(Bsq);
+        
+        //Loops untill T is a square number. 
+        while ((sqrtT.multiply(sqrtT)).compareTo(T) != 0){
+                //Adds one to Y
+                Y = Y.add(ONE);              
+                T = n.add(Y.multiply(Y));
+                sqrtT = getIntSqrt(T);
+           }
+        X = getIntSqrt(n.add(Y.multiply(Y))); 
+
+        //To find the factors you have to do X = X-Y and Y= = X + Y. I've done this within the print statement below.
+        System.out.println("ID: "+ id + " The factor of " + n + " is " + X.subtract(Y) +" * "+ X.add(Y) +"" + " Time take: "+ timeStop("showMs", timer));
 
     }
 
